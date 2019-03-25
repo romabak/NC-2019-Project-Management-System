@@ -1,0 +1,32 @@
+<div>
+  <form class="form-task">
+      <h2>New Task</h2>
+      <div class="form-group">
+        <label>Project code</label>
+        <input type="text">
+      </div>
+      <div>
+        <label>Decription</label>
+        <input type="text">
+      </div>
+      <div>
+        <label>Priority</label>
+        <select>
+          <option disabled>Выбрать приоритер</option>
+          <option *ngFor="let priority of priorites">{{priority}}</option>
+        </select>
+      </div>
+      <div>
+        <label>Due Data</label>
+        <input type="date">
+      </div>
+      <div>
+        <label>Estimation</label>
+        <input type="text">
+      </div>
+      <div>
+        <label>Assignee</label>
+      </div>
+    <button [routerLink]="['/main']">Home</button>
+  </form>
+</div>

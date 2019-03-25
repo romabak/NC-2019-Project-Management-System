@@ -15,6 +15,7 @@ public class SimpleController {
 
     class SimpleObject {
 
+
         String id;
         String name;
 
