@@ -1,3 +1,59 @@
-<p>
-  project-page works!
-</p>
+<div class="m-3">
+  <h2>Project</h2>
+  <form>
+    <h4>Description</h4>
+    <div class="row">
+      <button type="button" class="btn btn-dark col">Edit</button>
+      <button type="button" class="btn btn-dark col">Assign</button>
+      <button type="button" class="btn btn-dark col">Start</button>
+      <button type="button" class="btn btn-dark col">Resolve</button>
+      <button type="button" class="btn btn-dark col">Ready to start</button>
+      <button type="button" class="btn btn-dark col">ReOpen</button>
+      <button type="button" class="btn btn-dark col" [routerLink]="['/main']">Close</button>
+    </div>
+    <h4>Details:</h4>
+    <div>
+      <p>Priority: <input placeholder="Normal"></p>
+      <p>Status: <input placeholder="open"></p>
+      <p>Assignee: <input placeholder="User"></p>
+      <p>Reported: <input placeholder="User"></p>
+      <p> Estimation: <input placeholder="3d"></p>
+    </div>
+    <h4>Description:</h4>
+    <div class="container">
+      <div class="row">
+        <textarea class="col" rows="10">
+
+        </textarea>
+        <div class="col">
+          <div class="container">
+            <div class="row"><p>Created: <input></p></div>
+            <div class="row"><p>Updated: <input></p></div>
+            <div class="row"><p>Resolved: <input></p></div>
+            <div class="row"><p>Closed: <input></p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h4>Attachments:</h4>
+    <div class="container">
+      <div class="row">
+        <textarea class="col">
+
+        </textarea>
+      </div>
+    </div>
+    <h4>Comments:</h4>
+    <div class="container">
+      <div class="row">
+          <textarea class="col-9">
+
+          </textarea>
+        <div class="col-3">
+          <button type="button" class="btn btn-secondary">Add comment</button>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>

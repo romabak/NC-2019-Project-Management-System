@@ -1,20 +1,18 @@
 import { NgModule } from '@angular/core';
-import { HeaderComponent } from "./header/header.component";
 import { RouterModule, Routes} from "@angular/router";
-import {NewPojectComponent} from "./new-poject/new-poject.component";
-import {NewUserComponent} from "./new-user/new-user.component";
-import {NewTaskComponent} from "./new-task/new-task.component";
+import {AuthorizationComponent} from "./authorization/authorization.component";
+import {ProjectPageComponent} from "./project-page/project-page.component";
+import {HeaderComponent} from "./main-page/header/header.component";
 
 const routes: Routes = [
+  {path: '', component: AuthorizationComponent},
   {path: 'main', component: HeaderComponent},
-  {path: 'new-project', component: NewPojectComponent},
-  {path: 'new-user', component: NewUserComponent},
-  {path: 'new-task', component: NewTaskComponent}
+  {path: 'project-page', component: ProjectPageComponent}
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
   ],
   exports: [
     RouterModule
