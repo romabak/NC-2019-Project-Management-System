@@ -14,14 +14,10 @@
       <table class="table table-dark table-hover">
         <thead>
         <tr>
-          <th *ngFor="let colTable of table">{{colTable}}</th>
         </tr>
         </thead>
         <tbody id="myTable">
-        <tr *ngFor="let exam of exampleForTr">
-          <th *ngFor="let project of exam">{{project}}</th>
           <th><button class="btn btn-light" [routerLink]="['/project-page']">Edit</button></th>
-        </tr>
         </tbody>
       </table>
     </div>
@@ -40,11 +36,14 @@
       </div>
       <div class="modal-body">
         <p>Code</p>
-        <input>
+        <input [(ngModel)]="newProject.code">
+        <p>Name</p>
+        <input [(ngModel)]="newProject.name">
         <p>Summary</p>
-        <input>
+        <input [(ngModel)]="newProject.summary">
       </div>
       <div class="modal-footer">
+        <button (click)="saveNewProject()" type="button" class="btn btn-default" data-dismiss="modal">Create</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -62,14 +61,21 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-        <p>Personal Data</p>
-        <input>
+        <p>Name</p>
+        <input class="form-control" name="name" [(ngModel)]="editableUser.firstName"/>
+        <p>Surname</p>
+        <input class="form-control" name="name" [(ngModel)]="editableUser.secondName"/>
+        <p>Email</p>
+        <input class="form-control" name="email" [(ngModel)]="editableUser.email"/>
+        <p>Password</p>
+        <input class="form-control" name="password" [(ngModel)]="editableUser.password"/>
         <p>User Role</p>
-        <select>
-          <option *ngFor = "let role of userRole">{{role}}</option>
+        <select [(ngModel)]="editableUser.roleId">
+          <option [value]="role.id" *ngFor="let role of userRole">{{role.role}}</option>
         </select>
       </div>
       <div class="modal-footer">
+        <button  (click)="saveNewUser()" type="button" class="btn btn-default" data-dismiss="modal">Create</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -83,7 +89,7 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <h2>Hew Task</h2>
+        <h2>New Task</h2>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
@@ -92,7 +98,9 @@
         <p>Description</p>
         <input>
         <p>Priority</p>
-        <input>
+        <select>
+          <option *ngFor="let priority of taskPriority">{{priority.priority}}</option>
+        </select>
         <p>Due Data</p>
         <input>
         <p>Estimation</p>
@@ -107,6 +115,3 @@
 
   </div>
 </div>
-
-
-

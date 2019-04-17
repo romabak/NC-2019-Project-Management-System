@@ -1,5 +1,13 @@
 import { Component } from '@angular/core';
-declare var $: any;
+import {UserRole} from "../../modules/models/user-role";
+import {Subscription} from "rxjs";
+import {UserRoleService} from "../../services/user-role.service";
+import {TaskPriority} from "../../modules/models/task-priority";
+import {TaskPriorityService} from "../../services/task-priority.service";
+import {User} from "../../modules/models/user";
+import {UserService} from "../../services/user.service";
+import {Project} from "../../modules/models/project";
+import {ProjectService} from "../../services/project.service";
 
 @Component({
   selector: 'app-header',
@@ -10,67 +18,41 @@ declare var $: any;
 
 export class HeaderComponent {
 
-  public table = [
-    "Project code",
-    "Task",
-    "Priority",
-    "Status",
-    "Created",
-    "Updated",
-    "Due Date",
-    "Estimation",
-    "Assignee",
-    "Description",
-    "Action"
-  ];
+  userRole: UserRole[];
+  taskPriority: TaskPriority[];
+  editableUser: User = new User();
+  newProject: Project = new Project();
+  private subscriptions: Subscription[] = [];
 
-  public exampleForTh1 =[
-    "Project code",
-    "Task",
-    "Priority",
-    "Status",
-    "Created",
-    "Updated",
-    "Due Date",
-    "Estimation",
-    "Assignee",
-    "Description"
-  ];
-  public exampleForTh2 = [
-    "asda",
-    "asdfagf",
-    "asda",
-    "asdfagf",
-    "asda",
-    "asdfagf",
-    "asda",
-    "asdfagf",
-    "asda",
-    "asdfagf"
-  ];
 
-  public exampleForTr = [
-    this.exampleForTh1,
-    this.exampleForTh2
-  ];
-
-    public userRole = [
-    "Project manager",
-    "Developer",
-    "Tester"
-  ];
+  constructor(private userRoleService: UserRoleService,
+              private taskPriorityService: TaskPriorityService,
+              private userService: UserService,
+              private projectService: ProjectService) { }
 
   public ngOnInit(){
-    $(document).ready(function() {
-      $("#myInput").on("keyup", function () {
-        var value = $(this).val().toLowerCase();
-        $("#myTable tr").filter(function () {
-          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-      });
-    });
+    this.loadUserRole();
+    this.loadTaskPriority();
   }
 
-  constructor() { }
+  private loadUserRole() : void {
+    this.subscriptions.push(this.userRoleService.getUserRole().subscribe(role => {
+      this.userRole = role as UserRole[];
+    }));
+  }
 
+  private loadTaskPriority() : void{
+      this.subscriptions.push(this.taskPriorityService.getPriority().subscribe(priority=>{
+        this.taskPriority = priority as TaskPriority[];
+      }));
+  }
+
+  private saveNewUser(){
+    this.subscriptions.push(this.userService.saveNewUser(this.editableUser).subscribe(()=>{
+    }))
+  }
+
+  private saveNewProject(){
+    this.subscriptions.push(this.projectService.saveNewProject(this.newProject).subscribe());
+  }
 }

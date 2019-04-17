@@ -1,0 +1,105 @@
+drop database netcracker;
+
+create database netcracker;
+
+use netcracker;
+
+create table role(
+    id int auto_increment not null ,
+    role varchar(15) not null ,
+    primary key (id)
+) ENGINE = InnoDB;
+
+create table project(
+    id int auto_increment not null ,
+    primary key (id),
+    name varchar(50) not null unique ,
+    code varchar(10) not null unique ,
+    summary text not null
+)ENGINE = InnoDB;
+
+create table priority(
+    id int auto_increment not null ,
+    primary key (id),
+    priority varchar(15) not null unique
+)ENGINE = InnoDB;
+
+create table status(
+    id int auto_increment not null ,
+    primary key (id),
+    status varchar(15) not null unique
+)ENGINE = InnoDB;
+
+create table user(
+    id int auto_increment not null ,
+    primary key (id),
+    email varchar(50) not null unique ,
+    first_name varchar(50) not null ,
+    second_name varchar(50) not null ,
+    password varchar(50) not null ,
+    role_id int not null ,
+    foreign key (role_id)
+        references role(id)
+        ON DELETE NO ACTION
+        on UPDATE no action ,
+    project_id int,
+    foreign key (project_id)
+        references project(id)
+                 ON DELETE CASCADE
+                 ON UPDATE CASCADE
+)ENGINE = InnoDB;
+
+create table task(
+    id int auto_increment not null ,
+    primary key (id),
+    created_date date not null,
+    description text not null,
+    due_date date not null,
+    estimation int not null,
+    name varchar(50) not null unique ,
+    ticket_code date not null,
+    update_date date not null,
+    status_id int not null,
+    assignee int,
+    reporter int not null,
+    priority_id int not null ,
+    foreign key (status_id)
+        references status(id)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+    foreign key (assignee) references user(id),
+    foreign key (reporter) references user(id),
+    foreign key (priority_id) references priority(id)
+)ENGINE = InnoDB;
+
+create table comment(
+  id int auto_increment not null ,
+  comment_value text not null,
+  update_date date not null,
+  task_id int not null,
+  user_id int not null,
+  primary key (id),
+  foreign key (task_id)
+      references task(id)
+      ON DELETE RESTRICT
+      ON UPDATE CASCADE ,
+  foreign key (user_id) references user(id)
+)ENGINE = InnoDB;
+
+insert into role (role) values ('admin');
+insert into role (role) values ('project manager');
+insert into role (role) values ('developer');
+insert into role (role) values ('tester');
+
+insert into status (status) values ('open');
+insert into status (status) values ('in progress');
+insert into status (status) values ('ready for test');
+insert into status (status) values ('closed');
+
+insert into priority (priority) values ('blocker');
+insert into priority (priority) values ('critical');
+insert into priority (priority) values ('major');
+insert into priority (priority) values ('normal');
+insert into priority (priority) values ('minor');
+
+

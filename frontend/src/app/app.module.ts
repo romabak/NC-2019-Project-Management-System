@@ -8,6 +8,7 @@ import { AuthorizationComponent } from './authorization/authorization.component'
 import { AppRoutingModule } from './app-routing.module';
 import { ProjectPageComponent } from './project-page/project-page.component';
 import {HeaderComponent} from "./main-page/header/header.component";
+import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {HeaderComponent} from "./main-page/header/header.component";
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    Ng4LoadingSpinnerModule
   ],
   bootstrap: [AppComponent]
 })

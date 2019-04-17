@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {TaskStatusService} from "../services/task-status.service";
+import {TaskStatus} from "../modules/models/task-status";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-project-page',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectPageComponent implements OnInit {
 
-  constructor() { }
+  taskStatus: TaskStatus[];
+
+  private subscriptions: Subscription[] = [];
+
+  constructor(private taskStatusService: TaskStatusService) { }
 
   ngOnInit() {
+    this.loadTaskStatus();
   }
 
+  private loadTaskStatus(): void{
+    this.subscriptions.push(this.taskStatusService.getStatus().subscribe(status=>{
+      this.taskStatus = status as TaskStatus[];
+    }));
+  }
 }

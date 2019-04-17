@@ -14,7 +14,7 @@
     <h4>Details:</h4>
     <div>
       <p>Priority: <input placeholder="Normal"></p>
-      <p>Status: <input placeholder="open"></p>
+      <p>Status:  <select><option *ngFor="let status of taskStatus">{{status.status}}</option> </select></p>
       <p>Assignee: <input placeholder="User"></p>
       <p>Reported: <input placeholder="User"></p>
       <p> Estimation: <input placeholder="3d"></p>
