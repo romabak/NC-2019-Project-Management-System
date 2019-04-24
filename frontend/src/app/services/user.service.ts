@@ -11,6 +11,10 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   saveNewUser(user: User): Observable<User>{
-    return this.http.post<User>("/api/user/signup", user);
+    return this.http.post<User>("/api/user/", user);
+  }
+
+  getAllUsers(): Observable<User[]>{
+    return this.http.get<User[]>("/api/user");
   }
 }

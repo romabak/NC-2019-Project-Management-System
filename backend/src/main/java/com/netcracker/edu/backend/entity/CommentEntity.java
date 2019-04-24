@@ -10,8 +10,6 @@ public class CommentEntity {
     private int id;
     private String commentValue;
     private Date updateDate;
-    private TaskEntity taskByTaskId;
-    private UserEntity userByUserId;
 
     @Id
     @Column(name = "id")
@@ -56,25 +54,5 @@ public class CommentEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, commentValue, updateDate);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "task_id", referencedColumnName = "id", nullable = false)
-    public TaskEntity getTaskByTaskId() {
-        return taskByTaskId;
-    }
-
-    public void setTaskByTaskId(TaskEntity taskByTaskId) {
-        this.taskByTaskId = taskByTaskId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    public UserEntity getUserByUserId() {
-        return userByUserId;
-    }
-
-    public void setUserByUserId(UserEntity userByUserId) {
-        this.userByUserId = userByUserId;
     }
 }

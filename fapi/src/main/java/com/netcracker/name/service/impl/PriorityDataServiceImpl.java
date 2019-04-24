@@ -22,4 +22,10 @@ public class PriorityDataServiceImpl implements PriorityDataService {
         PriorityViewModel[] priorityViewModelResponse = restTemplate.getForObject(backendUrl + "/api/priority", PriorityViewModel[].class);
         return priorityViewModelResponse == null ? Collections.emptyList() : Arrays.asList(priorityViewModelResponse);
     }
+
+    @Override
+    public PriorityViewModel getByPriority(String name) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(backendUrl + "/api/priority/" + name, PriorityViewModel.class);
+    }
 }

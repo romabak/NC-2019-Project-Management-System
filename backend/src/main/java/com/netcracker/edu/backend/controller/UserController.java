@@ -1,7 +1,8 @@
 package com.netcracker.edu.backend.controller;
 
 import com.netcracker.edu.backend.entity.UserEntity;
-import com.netcracker.edu.backend.service.UserService;
+import com.netcracker.edu.backend.service.FindService;
+import com.netcracker.edu.backend.service.IDefaultOperationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
@@ -12,35 +13,33 @@ import java.util.Optional;
 @RequestMapping("/api/user")
 public class UserController {
 
-    private UserService userService;
+    private IDefaultOperationService<UserEntity> userService;
+    private FindService<UserEntity> findService;
 
     @Autowired
-    public UserController(UserService userService){
+    public UserController(FindService<UserEntity> findService, IDefaultOperationService<UserEntity> userService){
         this.userService = userService;
+        this.findService = findService;
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public Iterable<UserEntity> getAllUser(){
-	    return userService.findAllUsers();
+	    return userService.findAll();
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public UserEntity saveNewUser(@RequestBody UserEntity user){
-        return userService.saveUser(user);
+        return userService.save(user);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteUser(@PathVariable(name = "id") int id){
-	    userService.deleteById(id);
+	    userService.delete(id);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity getUserByID(@PathVariable(name = "id") Integer id){
-	    Optional<UserEntity> user = userService.findUserById(id);
-	    if(user.isPresent()){
-		    return ResponseEntity.ok(user.get());
-	    } else {
-		    return ResponseEntity.notFound().build();
-	    }
-    } 
+    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
+    public ResponseEntity getUserByName(@PathVariable(name = "name") String name){
+	    UserEntity user = findService.findByName(name);
+        return ResponseEntity.ok(user);
+    }
 }

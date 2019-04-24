@@ -3,39 +3,49 @@ package com.netcracker.name.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserViewModel {
+public class UserDBModel {
 
+    private int id;
     private String firstName;
     private String secondName;
     private String email;
     private String password;
-    private int roleId;
+    private RoleViewModel role;
 
-    public UserViewModel(){
+    public UserDBModel(){
 
     }
 
-    public UserViewModel(String firstName, String secondName, String email, String password, int role){
+    public UserDBModel(int id, String firstName, String secondName, String email, String password, RoleViewModel role){
+	    this.id = id;
         this.email = email;
         this.firstName = firstName;
         this.secondName = secondName;
         this.password = password;
-	    this.roleId = role;
+	    this.role = role;
     }
 
-    public String getFirst_name() {
+    public int getId(){
+        return id;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public String getFirstName() {
         return firstName;
     }
 
-    public void setFirst_name(String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public String getSecond_name() {
+    public String getSecondName() {
         return secondName;
     }
 
-    public void setSecond_name(String secondName) {
+    public void setSecondName(String secondName) {
         this.secondName = secondName;
     }
 
@@ -55,12 +65,12 @@ public class UserViewModel {
         this.password = password;
     }
 
-    public int getRole_id() {
-        return roleId;
+    public RoleViewModel getRole() {
+        return role;
     }
 
-    public void setRole_id(int role) {
-        this.roleId = role;
+    public void setRole(RoleViewModel role) {
+        this.role = role;
    }
 
 }

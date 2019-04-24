@@ -9,7 +9,6 @@ import java.util.Objects;
 public class PriorityEntity {
     private int id;
     private String priority;
-    private Collection<TaskEntity> tasksById;
 
     @Id
     @Column(name = "id")
@@ -43,14 +42,5 @@ public class PriorityEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, priority);
-    }
-
-    @OneToMany(mappedBy = "priorityByPriorityId")
-    public Collection<TaskEntity> getTasksById() {
-        return tasksById;
-    }
-
-    public void setTasksById(Collection<TaskEntity> tasksById) {
-        this.tasksById = tasksById;
     }
 }

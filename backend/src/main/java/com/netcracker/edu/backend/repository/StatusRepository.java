@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StatusRepository extends CrudRepository<StatusEntity, Integer> {
+    StatusEntity findByStatus(String status);
 }

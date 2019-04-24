@@ -9,7 +9,15 @@ import java.util.Objects;
 public class StatusEntity {
     private int id;
     private String status;
-    private Collection<TaskEntity> tasksById;
+
+    public StatusEntity(){
+
+    }
+
+    public StatusEntity(int id, String status){
+        this.id = id;
+        this.status = status;
+    }
 
     @Id
     @Column(name = "id")
@@ -43,14 +51,5 @@ public class StatusEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, status);
-    }
-
-    @OneToMany(mappedBy = "statusByStatusId")
-    public Collection<TaskEntity> getTasksById() {
-        return tasksById;
-    }
-
-    public void setTasksById(Collection<TaskEntity> tasksById) {
-        this.tasksById = tasksById;
     }
 }

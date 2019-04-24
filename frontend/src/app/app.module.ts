@@ -7,15 +7,16 @@ import {HttpClientModule} from "@angular/common/http";
 import { AuthorizationComponent } from './authorization/authorization.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProjectPageComponent } from './project-page/project-page.component';
-import {HeaderComponent} from "./main-page/header/header.component";
 import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
+import {LayoutModule} from "./modules/layout/layout.module";
+import {PopupModule} from "./modules/main-page/popup/popup.module";
+import {MainPageModule} from "./modules/main-page/main-page.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthorizationComponent,
-    ProjectPageComponent,
-    HeaderComponent
+    ProjectPageComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +24,9 @@ import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-    Ng4LoadingSpinnerModule
+    Ng4LoadingSpinnerModule,
+    LayoutModule,
+    MainPageModule
   ],
   bootstrap: [AppComponent]
 })

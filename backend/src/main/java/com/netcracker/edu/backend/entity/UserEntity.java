@@ -12,11 +12,7 @@ public class UserEntity {
     private String firstName;
     private String secondName;
     private String password;
-    private Collection<CommentEntity> commentsById;
-    private Collection<TaskEntity> tasksById;
-    private Collection<TaskEntity> tasksById_0;
-    private ProjectEntity projectByProjectId;
-    private int roleId;
+    private RoleEntity role;
 
     @Id
     @GeneratedValue
@@ -41,21 +37,21 @@ public class UserEntity {
 
     @Basic
     @Column(name = "first_name")
-    public String getFirst_name() {
+    public String getFirstName() {
         return firstName;
     }
 
-    public void setFirst_name(String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
     @Basic
     @Column(name = "second_name")
-    public String getSecond_name() {
+    public String getSecondName() {
         return secondName;
     }
 
-    public void setSecond_name(String secondName) {
+    public void setSecondName(String secondName) {
         this.secondName = secondName;
     }
 
@@ -86,50 +82,13 @@ public class UserEntity {
         return Objects.hash(id, email, firstName, secondName, password);
     }
 
-    @OneToMany(mappedBy = "userByUserId")
-    public Collection<CommentEntity> getCommentsById() {
-        return commentsById;
-    }
-
-    public void setCommentsById(Collection<CommentEntity> commentsById) {
-        this.commentsById = commentsById;
-    }
-
-    @OneToMany(mappedBy = "userByAssignee")
-    public Collection<TaskEntity> getTasksById() {
-        return tasksById;
-    }
-
-    public void setTasksById(Collection<TaskEntity> tasksById) {
-        this.tasksById = tasksById;
-    }
-
-    @OneToMany(mappedBy = "userByReporter")
-    public Collection<TaskEntity> getTasksById_0() {
-        return tasksById_0;
-    }
-
-    public void setTasksById_0(Collection<TaskEntity> tasksById_0) {
-        this.tasksById_0 = tasksById_0;
-    }
-
     @ManyToOne
-    @JoinColumn(name = "project_id", referencedColumnName = "id")
-    public ProjectEntity getProjectByProjectId() {
-        return projectByProjectId;
+    @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
+    public RoleEntity getRole() {
+        return role;
     }
 
-    public void setProjectByProjectId(ProjectEntity projectByProjectId) {
-        this.projectByProjectId = projectByProjectId;
-    }
-
-    @Basic
-    @Column(name = "role_id", nullable = false)
-    public int getRole_id() {
-        return roleId;
-    }
-
-    public void setRole_id(int roleId) {
-        this.roleId = roleId;
+    public void setRole(RoleEntity role) {
+        this.role = role;
     }
 }

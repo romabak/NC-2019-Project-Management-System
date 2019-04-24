@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProjectRepository extends CrudRepository<ProjectEntity, Integer> {
+    ProjectEntity findByCode(String code);
 }

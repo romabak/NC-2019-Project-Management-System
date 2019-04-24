@@ -10,6 +10,10 @@ export class ProjectService {
 
   constructor( private http: HttpClient) { }
 
+  getAllProject():Observable<Project[]>{
+    return this.http.get<Project[]>("/api/project");
+  }
+
   saveNewProject(project: Project): Observable<Project>{
     return this.http.post<Project>("/api/project", project);
   }

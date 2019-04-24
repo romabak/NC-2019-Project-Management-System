@@ -39,14 +39,10 @@ create table user(
     password varchar(50) not null ,
     role_id int not null ,
     foreign key (role_id)
-        references role(id)
-        ON DELETE NO ACTION
-        on UPDATE no action ,
+        references role(id),
     project_id int,
     foreign key (project_id)
         references project(id)
-                 ON DELETE CASCADE
-                 ON UPDATE CASCADE
 )ENGINE = InnoDB;
 
 create table task(
@@ -57,16 +53,13 @@ create table task(
     due_date date not null,
     estimation int not null,
     name varchar(50) not null unique ,
-    ticket_code date not null,
+    ticket_code char(7),
     update_date date not null,
     status_id int not null,
     assignee int,
-    reporter int not null,
+    reporter int,
     priority_id int not null ,
-    foreign key (status_id)
-        references status(id)
-        ON DELETE RESTRICT
-        ON UPDATE CASCADE,
+    foreign key (status_id) references status(id),
     foreign key (assignee) references user(id),
     foreign key (reporter) references user(id),
     foreign key (priority_id) references priority(id)
@@ -79,10 +72,7 @@ create table comment(
   task_id int not null,
   user_id int not null,
   primary key (id),
-  foreign key (task_id)
-      references task(id)
-      ON DELETE RESTRICT
-      ON UPDATE CASCADE ,
+  foreign key (task_id) references task(id),
   foreign key (user_id) references user(id)
 )ENGINE = InnoDB;
 

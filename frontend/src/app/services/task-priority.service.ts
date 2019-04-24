@@ -11,6 +11,6 @@ export class TaskPriorityService {
   constructor(private http: HttpClient) { }
 
   getPriority(): Observable<TaskPriority[]>{
-    return this.http.get<TaskPriority[]>("/api/ba/priority");
+    return this.http.get<TaskPriority[]>("/api/priority");
   }
 }

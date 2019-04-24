@@ -9,7 +9,6 @@ import java.util.Objects;
 public class RoleEntity {
     private int id;
     private String role;
-    private Collection<UserEntity> usersById;
 
     @Id
     @Column(name = "id")

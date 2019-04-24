@@ -974,7 +974,6 @@
       <RefSchemaName>netcracker</RefSchemaName>
       <RefTableName>task</RefTableName>
       <RefColNames>id</RefColNames>
-      <OnUpdate>cascade</OnUpdate>
     </foreign-key>
     <foreign-key id="247" parent="231" name="comment_ibfk_2">
       <ColNames>user_id</ColNames>
@@ -1141,8 +1140,7 @@
     </column>
     <column id="276" parent="236" name="ticket_code">
       <Position>7</Position>
-      <DataType>date|0s</DataType>
-      <NotNull>1</NotNull>
+      <DataType>char(7)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="277" parent="236" name="update_date">
@@ -1165,7 +1163,6 @@
     <column id="280" parent="236" name="reporter">
       <Position>11</Position>
       <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="281" parent="236" name="priority_id">
@@ -1209,7 +1206,6 @@
       <RefSchemaName>netcracker</RefSchemaName>
       <RefTableName>status</RefTableName>
       <RefColNames>id</RefColNames>
-      <OnUpdate>cascade</OnUpdate>
     </foreign-key>
     <foreign-key id="290" parent="236" name="task_ibfk_2">
       <ColNames>assignee</ColNames>
@@ -1304,8 +1300,6 @@
       <RefSchemaName>netcracker</RefSchemaName>
       <RefTableName>project</RefTableName>
       <RefColNames>id</RefColNames>
-      <OnUpdate>cascade</OnUpdate>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
   </database-model>
 </dataSource>

@@ -11,7 +11,7 @@ public class RoleViewModel {
     public RoleViewModel(){
     }
 
-    public RoleViewModel(int id, String role){
+    public RoleViewModel(int id, String role) {
         this.id = id;
         this.role = role;
     }

@@ -11,7 +11,7 @@ export class UserRoleService {
   constructor(private http: HttpClient) { }
 
   getUserRole(): Observable<UserRole[]>{
-    return this.http.get<UserRole[]>('/api/ba/role');
+    return this.http.get<UserRole[]>('/api/role');
   }
   
 }

@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface RoleDataService {
     List<RoleViewModel> getAll();
+    RoleViewModel getByRole(String role);
 }

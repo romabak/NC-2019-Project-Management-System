@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface PriorityDataService {
     List<PriorityViewModel> getAll();
+    PriorityViewModel getByPriority(String name);
 }

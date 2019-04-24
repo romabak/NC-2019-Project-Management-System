@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PriorityRepository extends CrudRepository<PriorityEntity, Integer> {
+    PriorityEntity findByPriority(String priority);
 }

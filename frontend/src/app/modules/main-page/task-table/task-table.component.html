@@ -1,3 +1,48 @@
-<p>
-  task-table works!
-</p>
+<div>
+  <div class="m-5 p-3">
+    <div class="row">
+      <div class="btn-group col">
+        <button type="button" class="btn btn-info btn-lg" (click)="open('project')">New Project</button>
+        <button type="button" class="btn btn-info btn-lg" (click)="open('user')" >New User</button>
+        <button type="button" class="btn btn-info btn-lg" (click)="open('task')">New Task</button>
+      </div>
+      <div class="col">
+        <input class="form-control" id="myInput" type="text" placeholder="Filter">
+      </div>
+    </div>
+    <div>
+      <table class="table table-dark table-hover">
+        <thead>
+        <tr>
+          <th>Project code</th>
+          <th>Task</th>
+          <th>Priority</th>
+          <th>Status</th>
+          <th>Created</th>
+          <th>Update</th>
+          <th>Due date</th>
+          <th>Estimation</th>
+          <th>Assignee</th>
+          <th>Description</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody id="myTable">
+        <tr *ngFor="let task of tasks">
+          <td>{{task.project}}</td>
+          <td>{{task.name}}</td>
+          <td>{{task.priority }}</td>
+          <td>{{task.status}}</td>
+          <td>{{task.createdDate}}</td>
+          <td>{{task.updateDate}}</td>
+          <td>{{task.dueDate}}</td>
+          <td>{{task.estimation}}</td>
+          <td>{{task.assignee}}</td>
+          <td>{{task.description}}</td>
+          <td><button class="btn btn-light" [routerLink]="['/project-page']">Edit</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

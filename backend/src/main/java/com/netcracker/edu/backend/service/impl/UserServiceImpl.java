@@ -2,35 +2,41 @@ package com.netcracker.edu.backend.service.impl;
 
 import com.netcracker.edu.backend.entity.UserEntity;
 import com.netcracker.edu.backend.repository.UserRepository;
-import com.netcracker.edu.backend.service.UserService;
+import com.netcracker.edu.backend.service.FindService;
+import com.netcracker.edu.backend.service.IDefaultOperationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
 @Component
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements IDefaultOperationService<UserEntity>, FindService<UserEntity> {
 
     @Autowired
     private UserRepository repository;
 
     @Override
-    public Iterable<UserEntity> findAllUsers() {
+    public Iterable<UserEntity> findAll() {
         return this.repository.findAll();
     }
 
     @Override
-    public UserEntity saveUser(UserEntity user) {
+    public UserEntity save(UserEntity user) {
         return repository.save(user);
     }
 
     @Override
-    public Optional<UserEntity> findUserById(Integer id) {
+    public Optional<UserEntity> findById(Integer id) {
         return repository.findById(id);
     }
 
     @Override
-    public void deleteById(Integer id) {
+    public void delete(Integer id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public UserEntity findByName(String name) {
+        return this.repository.findByEmail(name);
     }
 }

@@ -11,7 +11,6 @@ public class ProjectEntity {
     private String name;
     private String code;
     private String summary;
-    private Collection<UserEntity> usersById;
 
     @Id
     @GeneratedValue
@@ -68,14 +67,5 @@ public class ProjectEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, code, summary);
-    }
-
-    @OneToMany(mappedBy = "projectByProjectId")
-    public Collection<UserEntity> getUsersById() {
-        return usersById;
-    }
-
-    public void setUsersById(Collection<UserEntity> usersById) {
-        this.usersById = usersById;
     }
 }

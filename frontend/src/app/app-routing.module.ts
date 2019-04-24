@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes} from "@angular/router";
 import {AuthorizationComponent} from "./authorization/authorization.component";
 import {ProjectPageComponent} from "./project-page/project-page.component";
-import {HeaderComponent} from "./main-page/header/header.component";
+import {MainPageComponent} from "./modules/layout/main-page/main-page.component";
 
 const routes: Routes = [
   {path: '', component: AuthorizationComponent},
-  {path: 'main', component: HeaderComponent},
+  {path: 'main', component: MainPageComponent},
   {path: 'project-page', component: ProjectPageComponent}
 ];
 

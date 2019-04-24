@@ -24,4 +24,9 @@ public class StatusDataServiceImpl implements StatusDataService {
         return statusViewModelsResponse == null ? Collections.emptyList() : Arrays.asList(statusViewModelsResponse);
     }
 
+    @Override
+    public StatusViewModel getByStatus(String name) {
+        return new RestTemplate().getForObject(backendUrl + "/api/status/" + name, StatusViewModel.class);
+    }
+
 }

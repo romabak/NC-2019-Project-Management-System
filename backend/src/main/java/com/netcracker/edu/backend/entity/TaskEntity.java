@@ -2,25 +2,25 @@ package com.netcracker.edu.backend.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 @Table(name = "task", schema = "netcracker", catalog = "")
 public class TaskEntity {
+
     private int id;
     private Date createdDate;
     private String description;
     private Date dueDate;
     private int estimation;
     private String name;
-    private Date ticketCode;
+    private String ticketCode;
     private Date updateDate;
-    private Collection<CommentEntity> commentsById;
-    private StatusEntity statusByStatusId;
-    private UserEntity userByAssignee;
-    private UserEntity userByReporter;
-    private PriorityEntity priorityByPriorityId;
+    private Integer reporter;
+    private PriorityEntity priority;
+    private StatusEntity status;
+    private UserEntity assignee;
+    private ProjectEntity project;
 
     @Id
     @Column(name = "id")
@@ -84,11 +84,11 @@ public class TaskEntity {
 
     @Basic
     @Column(name = "ticket_code")
-    public Date getTicketCode() {
+    public String getTicketCode() {
         return ticketCode;
     }
 
-    public void setTicketCode(Date ticketCode) {
+    public void setTicketCode(String ticketCode) {
         this.ticketCode = ticketCode;
     }
 
@@ -100,6 +100,31 @@ public class TaskEntity {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    @Basic
+    @Column(name = "reporter")
+    public Integer getReporter() {
+        return reporter;
+    }
+
+    public void setReporter(Integer reporter) {
+        this.reporter = reporter;
+    }
+
+    @PrePersist
+    public void prePresist(){
+        java.util.Date now = new java.util.Date();
+        this.createdDate = this.updateDate = new java.sql.Date(now.getTime());
+        StatusEntity status = new StatusEntity(1, "open");
+        this.status = status;
+        this.reporter = null;
+        this.ticketCode = null;
+    }
+
+    @PreUpdate
+    public void preUpdate(){
+        this.updateDate = new java.sql.Date(new java.util.Date().getTime());
     }
 
     @Override
@@ -114,60 +139,52 @@ public class TaskEntity {
                 Objects.equals(dueDate, that.dueDate) &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(ticketCode, that.ticketCode) &&
-                Objects.equals(updateDate, that.updateDate);
+                Objects.equals(updateDate, that.updateDate) &&
+                Objects.equals(reporter, that.reporter);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, createdDate, description, dueDate, estimation, name, ticketCode, updateDate);
-    }
-
-    @OneToMany(mappedBy = "taskByTaskId")
-    public Collection<CommentEntity> getCommentsById() {
-        return commentsById;
-    }
-
-    public void setCommentsById(Collection<CommentEntity> commentsById) {
-        this.commentsById = commentsById;
+        return Objects.hash(id, createdDate, description, dueDate, estimation, name, ticketCode, updateDate, reporter);
     }
 
     @ManyToOne
     @JoinColumn(name = "status_id", referencedColumnName = "id", nullable = false)
-    public StatusEntity getStatusByStatusId() {
-        return statusByStatusId;
+    public StatusEntity getStatus() {
+        return status;
     }
 
-    public void setStatusByStatusId(StatusEntity statusByStatusId) {
-        this.statusByStatusId = statusByStatusId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "assignee", referencedColumnName = "id")
-    public UserEntity getUserByAssignee() {
-        return userByAssignee;
-    }
-
-    public void setUserByAssignee(UserEntity userByAssignee) {
-        this.userByAssignee = userByAssignee;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "reporter", referencedColumnName = "id", nullable = false)
-    public UserEntity getUserByReporter() {
-        return userByReporter;
-    }
-
-    public void setUserByReporter(UserEntity userByReporter) {
-        this.userByReporter = userByReporter;
+    public void setStatus(StatusEntity status) {
+        this.status = status;
     }
 
     @ManyToOne
     @JoinColumn(name = "priority_id", referencedColumnName = "id", nullable = false)
-    public PriorityEntity getPriorityByPriorityId() {
-        return priorityByPriorityId;
+    public PriorityEntity getPriority(){
+	    return priority;
     }
 
-    public void setPriorityByPriorityId(PriorityEntity priorityByPriorityId) {
-        this.priorityByPriorityId = priorityByPriorityId;
+    public void setPriority(PriorityEntity priority){
+	    this.priority = priority;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "assignee", referencedColumnName = "id", nullable = false)
+    public UserEntity getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(UserEntity assignee) {
+        this.assignee = assignee;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "project_id", referencedColumnName = "id")
+    public ProjectEntity getProject() {
+        return project;
+    }
+
+    public void setProject(ProjectEntity project) {
+        this.project = project;
     }
 }
