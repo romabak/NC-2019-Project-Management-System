@@ -1,5 +1,6 @@
 /home/roman/NC-2019-Project-Management-System/backend/src/main/java/com/netcracker/edu/backend/entity/ProjectEntity.java
 /home/roman/NC-2019-Project-Management-System/backend/src/main/java/com/netcracker/edu/backend/controller/ProjectController.java
+/home/roman/NC-2019-Project-Management-System/backend/src/main/java/com/netcracker/edu/backend/service/UserService.java
 /home/roman/NC-2019-Project-Management-System/backend/src/main/java/com/netcracker/edu/backend/controller/TaskController.java
 /home/roman/NC-2019-Project-Management-System/backend/src/main/java/com/netcracker/edu/backend/helper/StringSquenceIdentifer.java
 /home/roman/NC-2019-Project-Management-System/backend/src/main/java/com/netcracker/edu/backend/service/impl/TaskServiceImpl.java
@@ -20,6 +21,7 @@
 /home/roman/NC-2019-Project-Management-System/backend/src/main/java/com/netcracker/edu/backend/repository/StatusRepository.java
 /home/roman/NC-2019-Project-Management-System/backend/src/main/java/com/netcracker/edu/backend/controller/PriorityController.java
 /home/roman/NC-2019-Project-Management-System/backend/src/main/java/com/netcracker/edu/backend/service/impl/StatusServiceImpl.java
+/home/roman/NC-2019-Project-Management-System/backend/src/main/java/com/netcracker/edu/backend/service/TaskService.java
 /home/roman/NC-2019-Project-Management-System/backend/src/main/java/com/netcracker/edu/backend/repository/PriorityRepository.java
 /home/roman/NC-2019-Project-Management-System/backend/src/main/java/com/netcracker/edu/backend/service/FindService.java
 /home/roman/NC-2019-Project-Management-System/backend/src/main/java/com/netcracker/edu/backend/repository/UserRepository.java

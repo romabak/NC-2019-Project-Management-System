@@ -7,6 +7,7 @@ import java.sql.Date;
 
 public class TaskDTOModel {
 
+    private int id;
     private Date dueDate;
     private Date createdDate;
     private Date updateDate;
@@ -25,6 +26,7 @@ public class TaskDTOModel {
 
     public TaskDTOModel(TaskDBModel task){
         this(
+                task.getId(),
                 task.getDueDate(),
                 task.getCreatedDate(),
                 task.getUpdateDate(),
@@ -40,7 +42,8 @@ public class TaskDTOModel {
         );
     }
 
-    public TaskDTOModel(Date dueDate, Date createdDate, Date updateDate, String project, int estimation, String status, String assignee, String priority, String description, String name, String ticketCode, String reporter) {
+    public TaskDTOModel(int id, Date dueDate, Date createdDate, Date updateDate, String project, int estimation, String status, String assignee, String priority, String description, String name, String ticketCode, String reporter) {
+        this.id = id;
         this.dueDate = dueDate;
         this.createdDate = createdDate;
         this.updateDate = updateDate;
@@ -53,6 +56,14 @@ public class TaskDTOModel {
         this.name = name;
         this.ticketCode = ticketCode;
         this.reporter = reporter;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Date getDueDate() {

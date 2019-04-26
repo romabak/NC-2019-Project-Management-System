@@ -15,7 +15,8 @@ public class PriorityController {
 
     private IDefaultOperationService<PriorityEntity> priorityService;
 
-    private FindService<PriorityEntity> findService;
+    private FindService<PriorityEntity> findService; //прости за это говнище
+    //потом не забудь все исправить
 
     @Autowired
     public PriorityController(IDefaultOperationService<PriorityEntity> priorityService, FindService<PriorityEntity> findService){

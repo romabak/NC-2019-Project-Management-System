@@ -7,12 +7,18 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>Code</p>
-        <input [(ngModel)]="newProject.code">
-        <p>Name</p>
-        <input [(ngModel)]="newProject.name">
-        <p>Summary</p>
-        <input [(ngModel)]="newProject.summary">
+        <div>
+          <label for = "code">Code</label>
+          <input id = "code"[(ngModel)]="newProject.code">
+        </div>
+        <div>
+          <label for = "name">Name</label>
+          <input id = "name" [(ngModel)]="newProject.name">
+        </div>
+        <div>
+          <label for = "summary">Summary</label>
+          <input id = "summary" [(ngModel)]="newProject.summary">
+        </div>
       </div>
       <div class="modal-footer">
         <button (click)="saveNewProject()" type="button" class="btn btn-default" data-dismiss="modal">Create</button>

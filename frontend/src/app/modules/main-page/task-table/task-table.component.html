@@ -39,7 +39,7 @@
           <td>{{task.estimation}}</td>
           <td>{{task.assignee}}</td>
           <td>{{task.description}}</td>
-          <td><button class="btn btn-light" [routerLink]="['/project-page']">Edit</button></td>
+          <td><button class="btn btn-light" [routerLink]="['/project-page', task.id]">Edit</button></td>
         </tr>
         </tbody>
       </table>

@@ -1,6 +1,7 @@
 com/netcracker/edu/backend/entity/UserEntity.class
 com/netcracker/edu/backend/controller/TaskController.class
 com/netcracker/edu/backend/helper/StringSquenceIdentifer.class
+com/netcracker/edu/backend/service/UserService.class
 com/netcracker/edu/backend/entity/ProjectEntity.class
 com/netcracker/edu/backend/service/impl/StatusServiceImpl.class
 com/netcracker/edu/backend/controller/UserController.class
@@ -13,6 +14,7 @@ com/netcracker/edu/backend/service/impl/UserServiceImpl.class
 com/netcracker/edu/backend/entity/RoleEntity.class
 com/netcracker/edu/backend/repository/UserRepository.class
 com/netcracker/edu/backend/controller/ProjectController.class
+com/netcracker/edu/backend/service/TaskService.class
 com/netcracker/edu/backend/entity/CommentEntity.class
 com/netcracker/edu/backend/service/IDefaultOperationService.class
 com/netcracker/edu/backend/repository/CommentRepository.class

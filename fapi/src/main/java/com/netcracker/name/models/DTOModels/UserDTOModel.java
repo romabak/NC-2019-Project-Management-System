@@ -3,6 +3,8 @@ package com.netcracker.name.models.DTOModels;
 import com.netcracker.name.models.UserDBModel;
 
 public class UserDTOModel {
+
+    private int id;
     private String firstName;
     private String secondName;
     private String email;
@@ -15,6 +17,7 @@ public class UserDTOModel {
 
     public UserDTOModel(UserDBModel user){
         this(
+                user.getId(),
                 user.getFirstName(),
                 user.getSecondName(),
                 user.getEmail(),
@@ -23,12 +26,21 @@ public class UserDTOModel {
         );
     }
 
-    public UserDTOModel(String firstName, String secondName, String email, String password, String role) {
+    public UserDTOModel(int id, String firstName, String secondName, String email, String password, String role) {
+        this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
         this.email = email;
         this.password = password;
         this.role = role;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {

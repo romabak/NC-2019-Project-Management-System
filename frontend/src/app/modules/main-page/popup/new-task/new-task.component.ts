@@ -56,7 +56,7 @@ export class NewTaskComponent implements OnInit {
     }))
   }
 
-  private saveNewTask(){
+  public saveNewTask(){
     this.subscriptions.push(this.taskService.saveNewTask(this.newTask).subscribe(()=>{
       this.newTask = new Task();
     }))

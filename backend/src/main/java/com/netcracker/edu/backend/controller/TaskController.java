@@ -1,7 +1,9 @@
 package com.netcracker.edu.backend.controller;
 
 import com.netcracker.edu.backend.entity.TaskEntity;
+import com.netcracker.edu.backend.service.FindService;
 import com.netcracker.edu.backend.service.IDefaultOperationService;
+import com.netcracker.edu.backend.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +15,7 @@ import java.util.Optional;
 public class TaskController{
 
     @Autowired
-    private IDefaultOperationService<TaskEntity> taskService;
+    private TaskService taskService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public Iterable<TaskEntity> getAllTasks(){
@@ -31,13 +33,9 @@ public class TaskController{
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<TaskEntity> getTaskById(@PathVariable(name = "id") Integer id){
+    public ResponseEntity<TaskEntity> getTaskByName(@PathVariable(name = "id") int id){
         Optional<TaskEntity> task = taskService.findById(id);
-        if(task.isPresent()){
-            return ResponseEntity.ok(task.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.ok(task.get());
     }
 
 

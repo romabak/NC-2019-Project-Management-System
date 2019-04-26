@@ -4,6 +4,7 @@ import com.netcracker.edu.backend.entity.TaskEntity;
 import com.netcracker.edu.backend.repository.TaskRepository;
 import com.netcracker.edu.backend.service.FindService;
 import com.netcracker.edu.backend.service.IDefaultOperationService;
+import com.netcracker.edu.backend.service.TaskService;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +12,7 @@ import java.util.Optional;
 
 
 @Component
-public class TaskServiceImpl implements IDefaultOperationService<TaskEntity> {
+public class TaskServiceImpl implements TaskService {
 	
 	private TaskRepository repository;
 
@@ -24,7 +25,6 @@ public class TaskServiceImpl implements IDefaultOperationService<TaskEntity> {
 	public Iterable<TaskEntity> findAll(){
 		return this.repository.findAll();
 	}
-
 	@Override
 	public TaskEntity save(TaskEntity task){
 		return this.repository.save(task);
@@ -38,5 +38,10 @@ public class TaskServiceImpl implements IDefaultOperationService<TaskEntity> {
 	@Override
 	public Optional<TaskEntity> findById(Integer id){
 		return this.repository.findById(id);
+	}
+
+	@Override
+	public Optional<TaskEntity> findByName(String name) {
+		return this.repository.findByName(name);
 	}
 }

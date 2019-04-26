@@ -7,6 +7,7 @@ import java.sql.Date;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TaskDBModel {
 
+    private int id;
     private Date dueDate;
     private Date createdDate;
     private Date updateDate;
@@ -21,6 +22,14 @@ public class TaskDBModel {
     private UserDBModel reporter;
 
     public TaskDBModel() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public UserDBModel getReporter() {

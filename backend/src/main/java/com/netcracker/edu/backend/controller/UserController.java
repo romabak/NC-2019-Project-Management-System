@@ -3,6 +3,8 @@ package com.netcracker.edu.backend.controller;
 import com.netcracker.edu.backend.entity.UserEntity;
 import com.netcracker.edu.backend.service.FindService;
 import com.netcracker.edu.backend.service.IDefaultOperationService;
+import com.netcracker.edu.backend.service.UserService;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
@@ -13,13 +15,11 @@ import java.util.Optional;
 @RequestMapping("/api/user")
 public class UserController {
 
-    private IDefaultOperationService<UserEntity> userService;
-    private FindService<UserEntity> findService;
+    private UserService userService;
 
     @Autowired
-    public UserController(FindService<UserEntity> findService, IDefaultOperationService<UserEntity> userService){
+    public UserController(UserService userService){
         this.userService = userService;
-        this.findService = findService;
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -37,9 +37,9 @@ public class UserController {
 	    userService.delete(id);
     }
 
-    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
-    public ResponseEntity getUserByName(@PathVariable(name = "name") String name){
-	    UserEntity user = findService.findByName(name);
-        return ResponseEntity.ok(user);
+    @RequestMapping(value = "/{email}", method = RequestMethod.GET)
+    public ResponseEntity getUserByName(@PathVariable(name = "email") String email){
+	    Optional<UserEntity> user = userService.findByEmail(email);
+        return ResponseEntity.ok(user.get());
     }
 }

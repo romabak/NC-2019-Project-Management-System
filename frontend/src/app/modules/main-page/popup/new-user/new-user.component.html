@@ -7,16 +7,17 @@
     </button>
   </div>
   <div class="modal-body">
-    <p>Name</p>
-    <input class="form-control" name="name" [(ngModel)]="editableUser.firstName"/>
-    <p>Surname</p>
-    <input class="form-control" name="name" [(ngModel)]="editableUser.secondName"/>
-    <p>Email</p>
-    <input class="form-control" name="email" [(ngModel)]="editableUser.email"/>
-    <p>Password</p>
-    <input class="form-control" name="password" [(ngModel)]="editableUser.password"/>
-    <p>User Role</p>
-    <select [(ngModel)]="editableUser.role">
+    <label for="firstName">Name</label>
+    <input id = "firstName" class="form-control" name="name" [(ngModel)]="editableUser.firstName"/>
+    <label for="secondName">Surname</label>
+    <input id = "secondName" class="form-control" name="name" [(ngModel)]="editableUser.secondName"/>
+    <label for = "email">Email</label>
+    <input id = "email" type = "email" class="form-control" name="email" [(ngModel)]="editableUser.email" required />
+    <label for = "password">Password</label>
+    <input id = "password" type = "password" class="form-control" name="password" [(ngModel)]="editableUser.password" required />
+    <label for = "role">User Role</label>
+    <select id = "role" [(ngModel)]="editableUser.role">
+      <option [value]="role">Выберете роль</option>
       <option [value]="role.role" *ngFor="let role of userRole">{{role.role}}</option>
     </select>
   </div>

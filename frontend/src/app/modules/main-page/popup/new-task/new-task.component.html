@@ -7,33 +7,40 @@
     </button>
   </div>
   <div class="modal-body">
-
-    <p>Project code</p>
-    <select [(ngModel)]="newTask.project">
-      <option [value]="project.code" *ngFor="let project of allProjects">{{project.code}}</option>
-    </select>
-
-    <p>Name</p>
-    <input class="form-control" name="name" [(ngModel)]="newTask.name"/>
-
-    <p>Description</p>
-    <input class="form-control" name="name" [(ngModel)]="newTask.description"/>
-
-    <p>Priority</p>
-    <select [(ngModel)]="newTask.priority">
-      <option [value] = "priority.priority" *ngFor="let priority of allPriority">{{priority.priority}}</option>
-    </select>
-
-    <p>Due Data</p>
-    <input type="date" min = "2018-01-01" [(ngModel)]="newTask.dueDate"/>
-
-    <p>Estimation</p>
-    <input class="form-control" name="name" [(ngModel)]="newTask.estimation"/>
-
-    <p>Assignee</p>
-    <select [(ngModel)] = "newTask.assignee">
-      <option [value] = "user.email" *ngFor = "let user of allUsers">{{user.firstName + " "+ user.secondName}}</option>
-    </select>
+    <div>
+      <label for = "code">Project code</label>
+      <select id = "code" [(ngModel)]="newTask.project">
+        <option [value]="project.code" *ngFor="let project of allProjects">{{project.code}}</option>
+      </select>
+    </div>
+    <div>
+      <label for = "name">Name</label>
+      <input id = "name" class="form-control" name="name" [(ngModel)]="newTask.name"/>
+    </div>
+    <div>
+      <label for = "description">Description</label>
+      <input id = "description" class="form-control" name="name" [(ngModel)]="newTask.description"/>
+    </div>
+    <div>
+      <label for = "priority">Priority</label>
+        <select id = "priority" [(ngModel)]="newTask.priority">
+          <option [value] = "priority.priority" *ngFor="let priority of allPriority">{{priority.priority}}</option>
+        </select>
+    </div>
+    <div>
+      <label for = "data">Due Data</label>
+      <input id = "data" type="date" min = "2018-01-01" [(ngModel)]="newTask.dueDate"/>
+    </div>
+    <div>
+      <label for = "estimation">Estimation</label>
+      <input id = "estimation" class="form-control" name="name" [(ngModel)]="newTask.estimation"/>
+    </div>
+    <div>
+      <label for = "assignee">Assignee</label>
+      <select id = "assignee" [(ngModel)] = "newTask.assignee">
+        <option [value] = "user.email" *ngFor = "let user of allUsers">{{user.firstName + " "+ user.secondName}}</option>
+      </select>
+    </div>
   </div>
   <div class="modal-footer">
     <button (click)="saveNewTask()" type="button" class="btn btn-default" data-dismiss="modal">Create</button>

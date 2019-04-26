@@ -11,12 +11,14 @@ import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
 import {LayoutModule} from "./modules/layout/layout.module";
 import {PopupModule} from "./modules/main-page/popup/popup.module";
 import {MainPageModule} from "./modules/main-page/main-page.module";
+import { TaskPageComponent } from './modules/task-page/task-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthorizationComponent,
-    ProjectPageComponent
+    ProjectPageComponent,
+    TaskPageComponent
   ],
   imports: [
     BrowserModule,

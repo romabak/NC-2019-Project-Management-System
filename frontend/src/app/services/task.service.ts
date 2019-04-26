@@ -19,4 +19,12 @@ export class TaskService {
     return this.http.get<Task[]>("/api/task");
   }
 
+  getTaskByName(name: String): Observable<Task>{
+    return this.http.get<Task>("/api/task" + name);
+  }
+
+  getTaskById(id: string): Observable<Task>{
+    return this.http.get<Task>("/api/task/" + id);
+  }
+
 }

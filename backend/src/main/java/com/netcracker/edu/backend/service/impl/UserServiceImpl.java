@@ -4,13 +4,14 @@ import com.netcracker.edu.backend.entity.UserEntity;
 import com.netcracker.edu.backend.repository.UserRepository;
 import com.netcracker.edu.backend.service.FindService;
 import com.netcracker.edu.backend.service.IDefaultOperationService;
+import com.netcracker.edu.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
 @Component
-public class UserServiceImpl implements IDefaultOperationService<UserEntity>, FindService<UserEntity> {
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository repository;
@@ -36,7 +37,7 @@ public class UserServiceImpl implements IDefaultOperationService<UserEntity>, Fi
     }
 
     @Override
-    public UserEntity findByName(String name) {
+    public Optional<UserEntity> findByEmail(String name) {
         return this.repository.findByEmail(name);
     }
 }
