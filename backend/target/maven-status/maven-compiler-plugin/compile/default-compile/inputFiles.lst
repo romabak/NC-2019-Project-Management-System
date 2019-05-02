@@ -27,6 +27,7 @@
 /home/roman/NC-2019-Project-Management-System/backend/src/main/java/com/netcracker/edu/backend/repository/UserRepository.java
 /home/roman/NC-2019-Project-Management-System/backend/src/main/java/com/netcracker/edu/backend/BackendApplication.java
 /home/roman/NC-2019-Project-Management-System/backend/src/main/java/com/netcracker/edu/backend/entity/RoleEntity.java
+/home/roman/NC-2019-Project-Management-System/backend/src/main/java/com/netcracker/edu/backend/controller/CommentController.java
 /home/roman/NC-2019-Project-Management-System/backend/src/main/java/com/netcracker/edu/backend/service/impl/UserServiceImpl.java
 /home/roman/NC-2019-Project-Management-System/backend/src/main/java/com/netcracker/edu/backend/controller/StatusController.java
 /home/roman/NC-2019-Project-Management-System/backend/src/main/java/com/netcracker/edu/backend/controller/RoleController.java

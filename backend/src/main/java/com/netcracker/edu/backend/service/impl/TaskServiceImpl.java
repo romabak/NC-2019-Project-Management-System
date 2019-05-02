@@ -6,6 +6,8 @@ import com.netcracker.edu.backend.service.FindService;
 import com.netcracker.edu.backend.service.IDefaultOperationService;
 import com.netcracker.edu.backend.service.TaskService;
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -43,5 +45,15 @@ public class TaskServiceImpl implements TaskService {
 	@Override
 	public Optional<TaskEntity> findByName(String name) {
 		return this.repository.findByName(name);
+	}
+
+	@Override
+	public Page<TaskEntity> findAll(Pageable pageable) {
+		return this.repository.findAll(pageable);
+	}
+
+	@Override
+	public Page<TaskEntity> findAllByName(String name, Pageable pageable) {
+		return this.repository.findAllByName(name, pageable);
 	}
 }

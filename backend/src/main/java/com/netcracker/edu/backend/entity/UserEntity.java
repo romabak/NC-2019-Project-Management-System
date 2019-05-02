@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "user", schema = "netcracker", catalog = "")
+@Table(name = "user", schema = "netcracker")
 public class UserEntity {
     private int id;
     private String email;
@@ -25,7 +25,7 @@ public class UserEntity {
         this.id = id;
     }
 
-    @Basic
+    
     @Column(name = "email")
     public String getEmail() {
         return email;
@@ -35,7 +35,7 @@ public class UserEntity {
         this.email = email;
     }
 
-    @Basic
+    
     @Column(name = "first_name")
     public String getFirstName() {
         return firstName;
@@ -45,7 +45,7 @@ public class UserEntity {
         this.firstName = firstName;
     }
 
-    @Basic
+    
     @Column(name = "second_name")
     public String getSecondName() {
         return secondName;
@@ -55,7 +55,7 @@ public class UserEntity {
         this.secondName = secondName;
     }
 
-    @Basic
+    
     @Column(name = "password")
     public String getPassword() {
         return password;

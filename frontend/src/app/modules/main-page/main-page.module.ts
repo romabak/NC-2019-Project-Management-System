@@ -6,9 +6,10 @@ import { UserTableComponent } from './user-table/user-table.component';
 import {AppRoutingModule} from "../../app-routing.module";
 import {PopupModule} from "./popup/popup.module";
 import {NewProjectComponent} from "./popup/new-project/new-project.component";
-import {NgbModalModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbModalModule, NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {NewUserComponent} from "./popup/new-user/new-user.component";
 import {NewTaskComponent} from "./popup/new-task/new-task.component";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -23,12 +24,17 @@ import {NewTaskComponent} from "./popup/new-task/new-task.component";
     CommonModule,
     AppRoutingModule,
     PopupModule,
-    NgbModalModule.forRoot()
+    NgbModalModule.forRoot(),
+    NgbModule,
+    FormsModule
   ],
   entryComponents:[
     NewProjectComponent,
     NewUserComponent,
     NewTaskComponent
+  ],
+  bootstrap:[
+  TaskTableComponent
   ]
 })
 export class MainPageModule { }

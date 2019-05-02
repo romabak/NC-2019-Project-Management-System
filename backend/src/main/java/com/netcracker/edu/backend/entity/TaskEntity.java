@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "task", schema = "netcracker", catalog = "")
+@Table(name = "task", schema = "netcracker")
 public class TaskEntity {
 
     private int id;
@@ -23,6 +23,7 @@ public class TaskEntity {
     private ProjectEntity project;
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id")
     public int getId() {
         return id;
@@ -32,7 +33,7 @@ public class TaskEntity {
         this.id = id;
     }
 
-    @Basic
+    
     @Column(name = "created_date")
     public Date getCreatedDate() {
         return createdDate;
@@ -42,7 +43,7 @@ public class TaskEntity {
         this.createdDate = createdDate;
     }
 
-    @Basic
+    
     @Column(name = "description")
     public String getDescription() {
         return description;
@@ -52,7 +53,7 @@ public class TaskEntity {
         this.description = description;
     }
 
-    @Basic
+    
     @Column(name = "due_date")
     public Date getDueDate() {
         return dueDate;
@@ -62,7 +63,7 @@ public class TaskEntity {
         this.dueDate = dueDate;
     }
 
-    @Basic
+    
     @Column(name = "estimation")
     public int getEstimation() {
         return estimation;
@@ -72,8 +73,8 @@ public class TaskEntity {
         this.estimation = estimation;
     }
 
-    @Basic
-    @Column(name = "name")
+    
+    @Column(name = "edu")
     public String getName() {
         return name;
     }
@@ -82,7 +83,7 @@ public class TaskEntity {
         this.name = name;
     }
 
-    @Basic
+    
     @Column(name = "ticket_code")
     public String getTicketCode() {
         return ticketCode;
@@ -92,7 +93,7 @@ public class TaskEntity {
         this.ticketCode = ticketCode;
     }
 
-    @Basic
+    
     @Column(name = "update_date")
     public Date getUpdateDate() {
         return updateDate;
@@ -102,7 +103,7 @@ public class TaskEntity {
         this.updateDate = updateDate;
     }
 
-    @Basic
+    
     @Column(name = "reporter")
     public Integer getReporter() {
         return reporter;
@@ -114,12 +115,11 @@ public class TaskEntity {
 
     @PrePersist
     public void prePresist(){
-        java.util.Date now = new java.util.Date();
-        this.createdDate = this.updateDate = new java.sql.Date(now.getTime());
+        // java.util.Date now = new java.util.Date();
+        // this.createdDate = this.updateDate = new java.sql.Date(now.getTime());
         StatusEntity status = new StatusEntity(1, "open");
         this.status = status;
         this.reporter = null;
-        this.ticketCode = null;
     }
 
     @PreUpdate

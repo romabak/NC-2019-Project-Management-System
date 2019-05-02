@@ -14,7 +14,7 @@ create table project(
     id int auto_increment not null ,
     primary key (id),
     name varchar(50) not null unique ,
-    code varchar(10) not null unique ,
+    code char(4) not null unique ,
     summary text not null
 )ENGINE = InnoDB;
 
@@ -53,10 +53,10 @@ create table task(
     due_date date not null,
     estimation int not null,
     name varchar(50) not null unique ,
-    ticket_code char(7),
+    ticket_code varchar(10),
     update_date date not null,
     status_id int not null,
-    assignee int,
+    assignee int not null,
     reporter int,
     priority_id int not null ,
     foreign key (status_id) references status(id),
@@ -64,6 +64,18 @@ create table task(
     foreign key (reporter) references user(id),
     foreign key (priority_id) references priority(id)
 )ENGINE = InnoDB;
+
+create trigger insert_trigger
+    before insert on task
+    for each row
+    set new.ticket_code = concat((select code from project where id = new.id),'-', new.id),
+    new.created_date = date(now()), new.update_date = date(now());
+
+create trigger update_date
+    before update on task
+    for each row
+    set new.update = date(now());
+
 
 create table comment(
   id int auto_increment not null ,

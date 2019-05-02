@@ -5,8 +5,9 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "comment", schema = "netcracker", catalog = "")
+@Table(name = "comment", schema = "netcracker")
 public class CommentEntity {
+
     private int id;
     private String commentValue;
     private Date updateDate;
@@ -21,7 +22,7 @@ public class CommentEntity {
         this.id = id;
     }
 
-    @Basic
+    
     @Column(name = "comment_value")
     public String getCommentValue() {
         return commentValue;
@@ -31,7 +32,7 @@ public class CommentEntity {
         this.commentValue = commentValue;
     }
 
-    @Basic
+    
     @Column(name = "update_date")
     public Date getUpdateDate() {
         return updateDate;

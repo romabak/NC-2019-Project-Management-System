@@ -17,7 +17,7 @@
     <input id = "password" type = "password" class="form-control" name="password" [(ngModel)]="editableUser.password" required />
     <label for = "role">User Role</label>
     <select id = "role" [(ngModel)]="editableUser.role">
-      <option [value]="role">Выберете роль</option>
+      <option disabled="disabled">Выберете роль</option>
       <option [value]="role.role" *ngFor="let role of userRole">{{role.role}}</option>
     </select>
   </div>

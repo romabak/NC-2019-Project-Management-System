@@ -5,8 +5,9 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "status", schema = "netcracker", catalog = "")
+@Table(name = "status", schema = "netcracker")
 public class StatusEntity {
+    
     private int id;
     private String status;
 
@@ -29,7 +30,7 @@ public class StatusEntity {
         this.id = id;
     }
 
-    @Basic
+    
     @Column(name = "status")
     public String getStatus() {
         return status;

@@ -59,6 +59,7 @@ export class NewTaskComponent implements OnInit {
   public saveNewTask(){
     this.subscriptions.push(this.taskService.saveNewTask(this.newTask).subscribe(()=>{
       this.newTask = new Task();
+      this.activeModal.close();
     }))
   }
 

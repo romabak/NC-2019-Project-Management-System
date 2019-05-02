@@ -9,9 +9,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { ProjectPageComponent } from './project-page/project-page.component';
 import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
 import {LayoutModule} from "./modules/layout/layout.module";
-import {PopupModule} from "./modules/main-page/popup/popup.module";
 import {MainPageModule} from "./modules/main-page/main-page.module";
 import { TaskPageComponent } from './modules/task-page/task-page.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -30,6 +30,8 @@ import { TaskPageComponent } from './modules/task-page/task-page.component';
     LayoutModule,
     MainPageModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+  AppComponent
+  ]
 })
 export class AppModule { }

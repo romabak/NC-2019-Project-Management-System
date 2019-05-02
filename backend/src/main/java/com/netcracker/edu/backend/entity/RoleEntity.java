@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "role", schema = "netcracker", catalog = "")
+@Table(name = "role", schema = "netcracker")
 public class RoleEntity {
     private int id;
     private String role;
@@ -20,7 +20,7 @@ public class RoleEntity {
         this.id = id;
     }
 
-    @Basic
+    
     @Column(name = "role")
     public String getRole() {
         return role;

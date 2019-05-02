@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "priority", schema = "netcracker", catalog = "")
+@Table(name = "priority", schema = "netcracker")
 public class PriorityEntity {
     private int id;
     private String priority;
@@ -20,7 +20,7 @@ public class PriorityEntity {
         this.id = id;
     }
 
-    @Basic
+    
     @Column(name = "priority")
     public String getPriority() {
         return priority;

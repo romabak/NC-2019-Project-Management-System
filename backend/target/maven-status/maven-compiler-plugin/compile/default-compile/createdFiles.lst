@@ -22,6 +22,7 @@ com/netcracker/edu/backend/controller/RoleController.class
 com/netcracker/edu/backend/service/impl/PriorityServiceImpl.class
 com/netcracker/edu/backend/repository/TaskRepository.class
 com/netcracker/edu/backend/entity/StatusEntity.class
+com/netcracker/edu/backend/controller/CommentController.class
 com/netcracker/edu/backend/controller/PriorityController.class
 com/netcracker/edu/backend/entity/TaskEntity.class
 com/netcracker/edu/backend/repository/ProjectRepository.class

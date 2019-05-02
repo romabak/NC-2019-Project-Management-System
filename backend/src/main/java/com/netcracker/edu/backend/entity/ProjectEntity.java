@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "project", schema = "netcracker", catalog = "")
+@Table(name = "project", schema = "netcracker")
 public class ProjectEntity {
     private int id;
     private String name;
@@ -23,8 +23,8 @@ public class ProjectEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "name")
+    
+    @Column(name = "edu")
     public String getName() {
         return name;
     }
@@ -33,7 +33,7 @@ public class ProjectEntity {
         this.name = name;
     }
 
-    @Basic
+    
     @Column(name = "code")
     public String getCode() {
         return code;
@@ -43,7 +43,7 @@ public class ProjectEntity {
         this.code = code;
     }
 
-    @Basic
+    
     @Column(name = "summary")
     public String getSummary() {
         return summary;

@@ -7,7 +7,8 @@
         <button type="button" class="btn btn-info btn-lg" (click)="open('task')">New Task</button>
       </div>
       <div class="col">
-        <input class="form-control" id="myInput" type="text" placeholder="Filter">
+        <input id="myInput" type="text" placeholder="Filter">
+        <button>Submit</button>
       </div>
     </div>
     <div>
@@ -16,6 +17,7 @@
         <tr>
           <th>Project code</th>
           <th>Task</th>
+          <th>TicketCode</th>
           <th>Priority</th>
           <th>Status</th>
           <th>Created</th>
@@ -28,9 +30,10 @@
         </tr>
         </thead>
         <tbody id="myTable">
-        <tr *ngFor="let task of tasks">
+        <tr *ngFor="let task of tasks.content">
           <td>{{task.project}}</td>
           <td>{{task.name}}</td>
+          <td>{{task.ticketCode}}</td>
           <td>{{task.priority }}</td>
           <td>{{task.status}}</td>
           <td>{{task.createdDate}}</td>
@@ -42,7 +45,18 @@
           <td><button class="btn btn-light" [routerLink]="['/project-page', task.id]">Edit</button></td>
         </tr>
         </tbody>
+        <tfoot>
+          <ngb-pagination
+            [collectionSize]="tasks.totalElements"
+            [(page)]="page"
+            [pageSize] = "pageSize"
+            (pageChange) = "loadPageTasks($event)" aria-label="Default pagination">
+          </ngb-pagination>
+        </tfoot>
       </table>
+      <div>
+        <input [(ngModel)]="pageSize" placeholder="table size"><button class="btn btn-light" (click) = loadPageTasks(page)>Submit</button>
+      </div>
     </div>
   </div>
 </div>
