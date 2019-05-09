@@ -1,21 +1,24 @@
 package com.netcracker.edu.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class LoginUser {
 
-    String login;
+    String email;
     String password;
 
-    public LoginUser(String login, String password) {
-        this.login = login;
+    public LoginUser(String email, String password) {
+        this.email = email;
         this.password = password;
     }
 
-    public String getLogin() {
-        return login;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setEmail(String login) {
+        this.email = email;
     }
 
     public String getPassword() {

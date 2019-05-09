@@ -4,6 +4,7 @@
 /home/roman/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/controller/AuthenticationController.java
 /home/roman/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/models/DTOModels/UserDTOModel.java
 /home/roman/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/service/impl/TaskDataServiceImpl.java
+/home/roman/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/security/SecurityJwtConstants.java
 /home/roman/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/controller/StatusDataController.java
 /home/roman/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/service/impl/PriorityDataServiceImpl.java
 /home/roman/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/models/StatusViewModel.java
@@ -13,6 +14,7 @@
 /home/roman/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/FapiApplication.java
 /home/roman/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/models/TaskDBModel.java
 /home/roman/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/config/security/WebSecurityConfig.java
+/home/roman/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/security/JwtAuthenticationFilter.java
 /home/roman/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/models/DTOModels/TaskDTOModel.java
 /home/roman/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/service/PriorityDataService.java
 /home/roman/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/controller/TaskDataController.java
@@ -29,6 +31,7 @@
 /home/roman/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/service/TaskDataService.java
 /home/roman/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/models/ProjectViewModel.java
 /home/roman/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/models/LoginUser.java
+/home/roman/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/security/JwtAuthenticationEntryPoint.java
 /home/roman/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/models/RoleViewModel.java
 /home/roman/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/filter/CORSFilter.java
 /home/roman/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/service/RoleDataService.java

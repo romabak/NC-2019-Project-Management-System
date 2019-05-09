@@ -40,7 +40,7 @@
           <td>{{task.updateDate}}</td>
           <td>{{task.dueDate}}</td>
           <td>{{task.estimation}}</td>
-          <td>{{task.assignee}}</td>
+          <td>{{task.assignee.firstName + " " + task.assignee.secondName}}</td>
           <td>{{task.description}}</td>
           <td><button class="btn btn-light" [routerLink]="['/project-page', task.id]">Edit</button></td>
         </tr>

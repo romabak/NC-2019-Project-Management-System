@@ -2,12 +2,18 @@ package com.netcracker.edu.models.DTOModels;
 
 import com.netcracker.edu.models.UserDBModel;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class UserDTOModel {
 
     private int id;
     private String firstName;
     private String secondName;
     private String email;
+    private String password;
     private String role;
 
     public UserDTOModel(){
@@ -62,6 +68,14 @@ public class UserDTOModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword(){
+        return password;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
     }
 
     public String getRole() {

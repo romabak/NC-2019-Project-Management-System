@@ -74,7 +74,7 @@ public class TaskEntity {
     }
 
     
-    @Column(name = "edu")
+    @Column(name = "name")
     public String getName() {
         return name;
     }

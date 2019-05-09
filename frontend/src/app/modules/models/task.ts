@@ -1,3 +1,5 @@
+import { User } from "./user";
+
 export class Task {
   id:string;
   project: string;
@@ -7,7 +9,7 @@ export class Task {
   priority: string;
   status: string; //get, but didn't post
   estimation: string;
-  assignee: string;
+  assignee: User;
   createdDate: string;
   updateDate: string;
   reporter: string;

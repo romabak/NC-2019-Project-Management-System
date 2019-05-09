@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {Project} from "../../../models/project";
-import {TaskStatus} from "../../../models/task-status";
-import {Task} from "../../../models/task";
-import {User} from "../../../models/user";
-import {Subscription} from "rxjs";
-import {TaskPriority} from "../../../models/task-priority";
-import {TaskStatusService} from "../../../../services/task-status.service";
-import {TaskPriorityService} from "../../../../services/task-priority.service";
-import {ProjectService} from "../../../../services/project.service";
-import {UserService} from "../../../../services/user.service";
-import {TaskService} from "../../../../services/task.service";
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {Project} from '../../../models/project';
+import {Task} from '../../../models/task';
+import {User} from '../../../models/user';
+import {Subscription} from 'rxjs';
+import {TaskPriority} from '../../../models/task-priority';
+import {TaskPriorityService} from '../../../../services/task-priority.service';
+import {ProjectService} from '../../../../services/project.service';
+import {UserService} from '../../../../services/user.service';
+import {TaskService} from '../../../../services/task.service';
 
 @Component({
   selector: 'app-new-task',
@@ -19,9 +17,9 @@ import {TaskService} from "../../../../services/task.service";
 })
 export class NewTaskComponent implements OnInit {
 
-  allProjects : Project[];
+  allProjects: Project[];
   allPriority: TaskPriority[];
-  allUsers : User[];
+  allUsers: User[];
   newTask: Task = new Task();
   private subscriptions: Subscription[] = [];
 

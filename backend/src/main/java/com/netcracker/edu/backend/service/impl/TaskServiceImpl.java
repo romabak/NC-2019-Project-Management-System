@@ -27,9 +27,16 @@ public class TaskServiceImpl implements TaskService {
 	public Iterable<TaskEntity> findAll(){
 		return this.repository.findAll();
 	}
+
 	@Override
 	public TaskEntity save(TaskEntity task){
 		return this.repository.save(task);
+	}
+
+	@Override
+	public TaskEntity update(TaskEntity task){
+		Optional<TaskEntity> taskFromDB = this.repository.findById(task.getId());
+		return this.repository.save(taskFromDB.get());
 	}
 	
 	@Override

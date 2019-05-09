@@ -44,6 +44,8 @@ public class TaskDataController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<TaskDTOModel> getById(@PathVariable (name = "id") int id){
+        TaskDTOModel assignee = new TaskDTOModel(taskDataService.getById(id));
+        System.out.println(assignee.getAssignee().getId());
         return Optional.ofNullable(taskDataService.getById(id))
                 .map(task-> new ResponseEntity<>(new TaskDTOModel(task), HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
@@ -69,13 +71,17 @@ public class TaskDataController {
 
     private TaskDBModel convertToEntity(TaskDTOModel taskDto){
         TaskDBModel taskDBModel = new TaskDBModel();
+        taskDBModel.setId(taskDto.getId());
+        taskDBModel.setCreatedDate(taskDto.getCreatedDate());
+//        taskDBModel.setReporter(userDataService.getByEmail(taskDto.getReporter()));
         taskDBModel.setDueDate(taskDto.getDueDate());
         taskDBModel.setDescription(taskDto.getDescription());
         taskDBModel.setName(taskDto.getName());
         taskDBModel.setPriority(priorityDataService.getByPriority(taskDto.getPriority()));
-        taskDBModel.setAssignee(userDataService.getByEmail(taskDto.getAssignee()));
+        taskDBModel.setAssignee(userDataService.getByEmail(taskDto.getAssignee().getEmail()));
         taskDBModel.setProject(projectDataService.getProjectByCode(taskDto.getProject()));
         taskDBModel.setEstimation(taskDto.getEstimation());
+        taskDBModel.setStatus(statusDataService.getByStatus(taskDto.getStatus()));
         return taskDBModel;
     }
 }

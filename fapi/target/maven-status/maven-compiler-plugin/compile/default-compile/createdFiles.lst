@@ -5,9 +5,11 @@ com/netcracker/edu/controller/TaskDataController.class
 com/netcracker/edu/service/TaskDataService.class
 com/netcracker/edu/models/DTOModels/TaskDTOModel.class
 com/netcracker/edu/config/security/WebSecurityConfig.class
+com/netcracker/edu/security/JwtAuthenticationEntryPoint.class
 com/netcracker/edu/service/impl/StatusDataServiceImpl.class
 com/netcracker/edu/models/RoleViewModel.class
 com/netcracker/edu/service/ProjectDataService.class
+com/netcracker/edu/security/SecurityJwtConstants.class
 com/netcracker/edu/controller/RoleDataController.class
 com/netcracker/edu/models/ProjectViewModel.class
 com/netcracker/edu/models/DTOModels/PageTaskDTOModel.class
@@ -26,6 +28,8 @@ com/netcracker/edu/FapiApplication.class
 com/netcracker/edu/service/impl/UserDataServiceImpl.class
 com/netcracker/edu/controller/AuthenticationController.class
 com/netcracker/edu/models/TaskDBModel.class
+com/netcracker/edu/filter/CORSFilter.class
+com/netcracker/edu/security/JwtAuthenticationFilter.class
 com/netcracker/edu/controller/ProjectDataController.class
 com/netcracker/edu/service/impl/PriorityDataServiceImpl.class
 com/netcracker/edu/service/PriorityDataService.class

@@ -1,5 +1,8 @@
 package com.netcracker.edu.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class AuthToken {
 
     private String token;

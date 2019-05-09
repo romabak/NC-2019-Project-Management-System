@@ -31,6 +31,7 @@ public class TaskController{
 
     @RequestMapping(method = RequestMethod.POST)
     public TaskEntity saveTasks(@RequestBody TaskEntity task){
+        System.out.println("name = " + task.getName());
         return this.taskService.save(task);
     }
 

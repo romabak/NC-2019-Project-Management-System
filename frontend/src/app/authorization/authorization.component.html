@@ -1,10 +1,9 @@
 <div class="m-3 p-3">
-  <form>
+  <form [formGroup] = "loginForm">
     <div class="form-row">
       <div class="col-sm-3">
         <label>Email</label>
-        <input type="email" class="form-control" id="email" required="required"
-               [(ngModel)]="user.email" name="email" #name="ngModel">
+        <input type="email" class="form-control" id="email" required="required" formControlName = "email">
       </div>
     </div>
     <div class="form-row">
@@ -16,12 +15,13 @@
     <div class="form-row">
       <div class="col-sm-3">
         <label for="Password">Password</label>
-        <input type="password" class="form-control" id="Password">
+        <input type="password" class="form-control" id="Password" formControlName = "password">
       </div>
     </div>
     <div class="checkbox">
       <label><input type="checkbox"> Remember me</label>
     </div>
-    <button  class="btn btn-success" [routerLink]="['/main']">LogIn</button>
+    <button  class="btn btn-success" (click) = "login()">LogIn</button>
+    <button  class="btn btn-success" (click) = "logout()">Logout</button>
   </form>
 </div>

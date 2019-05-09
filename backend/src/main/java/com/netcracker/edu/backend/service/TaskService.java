@@ -10,4 +10,5 @@ public interface TaskService extends IDefaultOperationService<TaskEntity> {
     Optional<TaskEntity> findByName(String name);
     Page<TaskEntity> findAll(Pageable pageable);
     Page<TaskEntity> findAllByName(String name, Pageable pageable);
+    TaskEntity update(TaskEntity task);
 }

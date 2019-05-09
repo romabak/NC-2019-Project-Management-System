@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -26,8 +27,10 @@ public class UserDataController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ResponseEntity<List<UserDBModel>> getAllUsers(){
-        return ResponseEntity.ok(userDataService.getAllUsers());
+    public ResponseEntity<List<UserDTOModel>> getAllUsers(){
+        List<UserDBModel> users = userDataService.getAllUsers();
+        List<UserDTOModel> usersDto = users.stream().map(user-> new UserDTOModel(user)).collect(Collectors.toList());
+        return ResponseEntity.ok(usersDto);
     }
 
     @RequestMapping(method = RequestMethod.POST, produces = "application/json")
@@ -45,6 +48,8 @@ public class UserDataController {
         model.setFirstName(dtoModel.getFirstName());
         model.setSecondName(dtoModel.getSecondName());
         model.setEmail(dtoModel.getEmail());
+        System.out.println("password = " + dtoModel.getPassword());
+        model.setPassword(dtoModel.getPassword());
         model.setRole(roleDataService.getByRole(dtoModel.getRole()));
         return model;
     }

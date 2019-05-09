@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {TaskStatusService} from "../services/task-status.service";
-import {TaskStatus} from "../modules/models/task-status";
-import {Subscription} from "rxjs";
-import {TaskService} from "../services/task.service";
-import {Task} from "../modules/models/task";
-import {ActivatedRoute} from "@angular/router";
+import { TaskStatusService } from "../services/task-status.service";
+import { TaskStatus } from "../modules/models/task-status";
+import { Subscription } from "rxjs";
+import { TaskService } from "../services/task.service";
+import { Task } from "../modules/models/task";
+import { ActivatedRoute } from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {TaskPriority} from "../modules/models/task-priority";
-import {TaskPriorityService} from "../services/task-priority.service";
+import { TaskPriority } from "../modules/models/task-priority";
+import { TaskPriorityService } from "../services/task-priority.service";
 
 @Component({
   selector: 'app-project-page',

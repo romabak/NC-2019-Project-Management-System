@@ -3,15 +3,16 @@ import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 
 import { AppComponent } from './app.component';
-import {HttpClientModule} from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
 import { AuthorizationComponent } from './authorization/authorization.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProjectPageComponent } from './project-page/project-page.component';
-import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
-import {LayoutModule} from "./modules/layout/layout.module";
-import {MainPageModule} from "./modules/main-page/main-page.module";
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { LayoutModule} from './modules/layout/layout.module';
+import { MainPageModule} from './modules/main-page/main-page.module';
 import { TaskPageComponent } from './modules/task-page/task-page.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -28,8 +29,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     Ng4LoadingSpinnerModule,
     LayoutModule,
-    MainPageModule
+    MainPageModule,
+    OAuthModule
   ],
+  providers: [ CookieService ],
   bootstrap: [
   AppComponent
   ]
