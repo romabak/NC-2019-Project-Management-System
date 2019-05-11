@@ -42,7 +42,7 @@ import javax.annotation.Resource;
      protected void configure(HttpSecurity http) throws Exception{
          http.cors().and().csrf().disable()
          .authorizeRequests()
-            .antMatchers("/token/*").permitAll()
+            .antMatchers("/api/token/*").permitAll()
             .antMatchers("/api/**").hasRole("DEVELOPER")
                  .and()
                  .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)

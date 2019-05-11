@@ -14,28 +14,12 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root'
 })
 export class AppService {
-  
-  readonly httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Authorization': 'my-auth-token'
-  })
-};
-
-  readonly options = {
-        headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': 'Bearer'
-      })
-        // "observe": "response", // to display the full response
-        // "responseType": "json"
-    };
 
   constructor(
     private router: Router, private http: HttpClient, private cookie: CookieService){}
 
   obtainAccessToken(loginData: LoginUser): Observable<Token>{
-    return this.http.post<Token>("http://<localhost:8081></localhost:8081>/token/generate-token", loginData, this.options);
+    return this.http.post<Token>("/api/token/generate-token", loginData);
   }
 
   saveToken(token){
