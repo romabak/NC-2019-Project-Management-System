@@ -26,7 +26,7 @@ public class UserDataServiceImpl implements UserDetailsService, UserDataService 
     @Override
     public UserDBModel saveNewUser(UserDBModel user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        System.out.println("password = " + user.getPassword());
+        // System.out.println("password = " + user.getPassword());
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.postForEntity(backendServerUrl + "/api/user", user, UserDBModel.class).getBody();
     }
@@ -56,7 +56,9 @@ public class UserDataServiceImpl implements UserDetailsService, UserDataService 
 
     private Set<SimpleGrantedAuthority> getAuthority(UserDBModel user){
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
+        System.out.println(user.getRole().getRole());
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole().getRole().toUpperCase()));
+        System.out.println(authorities);
         return authorities;
     }
 }

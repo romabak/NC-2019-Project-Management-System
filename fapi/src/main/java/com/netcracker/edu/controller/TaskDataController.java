@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/task")
+@RequestMapping(value = "/api/task")
 public class TaskDataController {
 
     private TaskDataService taskDataService;

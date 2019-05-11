@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { LoginUser } from '../modules/models/login-user';
 import { RequestOptions } from '@angular/http';
 import { User } from '../modules/models/user';
+import { Token } from '../modules/models/token';
 import { CookieService } from 'ngx-cookie-service';
 
 
@@ -14,17 +15,31 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class AppService {
   
+  readonly httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Authorization': 'my-auth-token'
+  })
+};
+
+  readonly options = {
+        headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer'
+      })
+        // "observe": "response", // to display the full response
+        // "responseType": "json"
+    };
+
   constructor(
     private router: Router, private http: HttpClient, private cookie: CookieService){}
 
-  obtainAccessToken(loginData: LoginUser): Observable<LoginUser>{
-    console.log(loginData);
-    return this.http.post<LoginUser>('http://localhost:8081/token/generate-token', loginData);
+  obtainAccessToken(loginData: LoginUser): Observable<Token>{
+    return this.http.post<Token>("http://<localhost:8081></localhost:8081>/token/generate-token", loginData, this.options);
   }
 
   saveToken(token){
-    console.log("token = " + token.token);
-    this.cookie.set('token', token);
+    this.cookie.set('token', token.token);
     this.router.navigate(['main']);
   }
 

@@ -33,7 +33,6 @@ export class AuthorizationComponent implements OnInit {
 
   login(){
   	this.subscriptions.push(this.authService.obtainAccessToken(this.loginForm.value).subscribe(token=>{
-  		console.log(token);
   		this.authService.saveToken(token);
   	}));
     console.log(this.loginForm.value);
