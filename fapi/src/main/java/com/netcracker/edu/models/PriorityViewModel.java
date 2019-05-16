@@ -30,4 +30,12 @@ public class PriorityViewModel {
     public void setPriority(String priority) {
         this.priority = priority;
     }
+
+    @Override
+    public String toString() {
+        return "PriorityViewModel{" +
+                "id=" + id +
+                ", priority'" + priority + 
+                '}';
+    }
 }

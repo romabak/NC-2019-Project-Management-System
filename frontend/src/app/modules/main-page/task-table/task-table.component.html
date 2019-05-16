@@ -1,62 +1,54 @@
 <div>
-  <div class="m-5 p-3">
-    <div class="row">
-      <div class="btn-group col">
-        <button type="button" class="btn btn-info btn-lg" (click)="open('project')">New Project</button>
-        <button type="button" class="btn btn-info btn-lg" (click)="open('user')" >New User</button>
-        <button type="button" class="btn btn-info btn-lg" (click)="open('task')">New Task</button>
-      </div>
-      <div class="col">
-        <input id="myInput" type="text" placeholder="Filter">
-        <button>Submit</button>
-      </div>
-    </div>
-    <div>
-      <table class="table table-dark table-hover">
-        <thead>
-        <tr>
-          <th>Project code</th>
-          <th>Task</th>
-          <th>TicketCode</th>
-          <th>Priority</th>
-          <th>Status</th>
-          <th>Created</th>
-          <th>Update</th>
-          <th>Due date</th>
-          <th>Estimation</th>
-          <th>Assignee</th>
-          <th>Description</th>
-          <th>Action</th>
-        </tr>
-        </thead>
-        <tbody id="myTable">
-        <tr *ngFor="let task of tasks.content">
-          <td>{{task.project}}</td>
-          <td>{{task.name}}</td>
-          <td>{{task.ticketCode}}</td>
-          <td>{{task.priority }}</td>
-          <td>{{task.status}}</td>
-          <td>{{task.createdDate}}</td>
-          <td>{{task.updateDate}}</td>
-          <td>{{task.dueDate}}</td>
-          <td>{{task.estimation}}</td>
-          <td>{{task.assignee.firstName + " " + task.assignee.secondName}}</td>
-          <td>{{task.description}}</td>
-          <td><button class="btn btn-light" [routerLink]="['/project-page', task.id]">Edit</button></td>
-        </tr>
-        </tbody>
-        <tfoot>
-          <ngb-pagination
-            [collectionSize]="tasks.totalElements"
-            [(page)]="page"
-            [pageSize] = "pageSize"
-            (pageChange) = "loadPageTasks($event)" aria-label="Default pagination">
-          </ngb-pagination>
-        </tfoot>
-      </table>
-      <div>
-        <input [(ngModel)]="pageSize" placeholder="table size"><button class="btn btn-light" (click) = loadPageTasks(page)>Submit</button>
-      </div>
-    </div>
+  <table class="table table-dark table-hover">
+    <thead>
+    <tr>
+      <th>Project code</th>
+      <th>Task</th>
+      <th>TicketCode</th>
+      <th>Priority</th>
+      <th>Status</th>
+      <th>Created</th>
+      <th>Update</th>
+      <th>Due date</th>
+      <th>Estimation</th>
+      <th>Assignee</th>
+      <th>Description</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody id="myTable">
+    <tr *ngFor="let task of tasks.content">
+      <td>{{task.project}}</td>
+      <td>{{task.name}}</td>
+      <td>{{task.ticketCode}}</td>
+      <td>{{task.priority }}</td>
+      <td>{{task.status}}</td>
+      <td>{{task.createdDate}}</td>
+      <td>{{task.updateDate}}</td>
+      <td>{{task.dueDate}}</td>
+      <td>{{task.estimation}}</td>
+      <td>{{task.assignee.firstName + " " + task.assignee.secondName}}</td>
+      <td>{{task.description}}</td>
+      <td><button class="btn btn-light" [routerLink]="['/project-page', task.id]">Edit</button></td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <ngb-pagination
+      [collectionSize]="tasks.totalElements"
+      [(page)]="page"
+      [pageSize] = "pageSize"
+      (pageChange) = "loadPageTasks($event)" aria-label="Default pagination">
+    </ngb-pagination>
+    </tfoot>
+  </table>
+  <div>
+    <select [(ngModel)] = "pageSize" (change)=loadPageTasks(page)>
+      <option [ngValue] = "5">5</option>
+      <option [ngValue] = "10">10</option>
+      <option [ngValue] = "15">15</option>
+    </select>
+    <button class="btn btn-light" (click) = logout()>Logout</button>
+    <input id="myInput" type="text" placeholder="Filter">
+    <button class="btn btn-light">Submit</button>
   </div>
 </div>

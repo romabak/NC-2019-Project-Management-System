@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { OAuthService } from 'angular-oauth2-oidc';
 import { Router } from '@angular/router';
 import { LoginUser } from '../modules/models/login-user';
-import { RequestOptions } from '@angular/http';
 import { User } from '../modules/models/user';
 import { Token } from '../modules/models/token';
 import { CookieService } from 'ngx-cookie-service';
+import { Subscription } from 'rxjs';
+import { UserService } from './user.service';
 
 
 @Injectable({
@@ -15,33 +14,49 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class AppService {
 
-  constructor(
-    private router: Router, private http: HttpClient, private cookie: CookieService){}
+  private subscriptions: Subscription[] = [];
 
-  obtainAccessToken(loginData: LoginUser): Observable<Token>{
-    return this.http.post<Token>("/api/token/generate-token", loginData);
+  constructor(
+    private router: Router, 
+    private http: HttpClient, 
+    private cookie: CookieService,
+    private userService: UserService
+    ){}
+
+  obtainAccessToken(loginData: LoginUser){
+    this.subscriptions.push(
+      this.http.post<Token>("/api/token/generate-token", loginData).subscribe(token=>{
+        this.userService.getUserByEmail(loginData.email).subscribe(user=>{
+          this.saveUserInfo(user, token);
+        });
+      }));
   }
 
-  saveToken(token){
-    this.cookie.set('token', token.token);
+  private saveUserInfo(user: User, token: Token){
+    if(JSON.parse(localStorage.getItem('rememberMe'))){
+      localStorage.setItem('email', user.email);
+      localStorage.setItem('role', user.role.role);
+      this.cookie.set('token', token.token, 365);
+    } else {
+      sessionStorage.setItem('email', user.email);
+      sessionStorage.setItem('role', user.role.role);
+      this.cookie.set('token', token.token);
+    }
     this.router.navigate(['main']);
   }
 
-  // getResource(resourceUrl): Observable<User>{
-    // var headers = new Headers({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
-    //   'Authorization': 'Bearer ' + this.cookie.get('access_token')});
-    // var options = new RequestOptions({ headers: headers });
-    // return this.http.get(resourceUrl);
-  // }
-
   checkCredentials(){
-    if (!this.cookie.check('token')){
-      this.router.navigate(['login']);
+    if (!this.cookie.check('token') || !(localStorage.getItem('email') || sessionStorage.getItem('email'))){
+        this.cookie.deleteAll();
+        this.router.navigate(['']);
+    } else {
+      this.router.navigate(['main']);
     }
   }
 
-  logout() {
+  logout(){
     this.cookie.delete('token');
+    localStorage.clear();          
     this.router.navigate(['']);
   }
 }

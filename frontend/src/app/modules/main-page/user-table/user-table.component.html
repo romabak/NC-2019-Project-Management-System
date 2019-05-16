@@ -1,3 +1,40 @@
-<p>
-  user-table works!
-</p>
+<div>
+      <table class="table table-dark table-hover">
+        <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Second Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody id="myTable">
+        <tr *ngFor="let user of users.content">
+          <td>{{user.firstName}}</td>
+          <td>{{user.secondName}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.role.role}}</td>
+          <td><button class="btn btn-light" (click)="deleteUser(user.id)">Delete</button></td>
+        </tr>
+        </tbody>
+        <tfoot>
+          <ngb-pagination
+            [collectionSize]="users.totalElements"
+            [(page)]="page"
+            [pageSize] = "pageSize"
+            (pageChange) = "loadPageForTables($event)" aria-label="Default pagination">
+          </ngb-pagination>
+        </tfoot>
+      </table>
+      <div>
+        <select [(ngModel)] = "pageSize" (change) = loadPageForTables(page)>
+          <option [ngValue] = "5">5</option>
+          <option [ngValue] = "10">10</option>
+          <option [ngValue] = "15">15</option>
+        </select>
+        <button class="btn btn-light" (click) = logout()>Logout</button>
+        <input id="myInput" type="text" placeholder="Filter">
+        <button class="btn btn-light">Submit</button>
+      </div>
+    </div>

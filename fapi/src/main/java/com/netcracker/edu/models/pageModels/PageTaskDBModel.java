@@ -1,7 +1,13 @@
-package com.netcracker.edu.models;
+package com.netcracker.edu.models.pageModels;
+
+import com.netcracker.edu.models.TaskDBModel;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PageTaskDBModel {
 
     private List<TaskDBModel> content;
@@ -52,5 +58,18 @@ public class PageTaskDBModel {
 
     public void setTotalPages(int totalPages) {
         this.totalPages = totalPages;
+    }
+
+    @Override
+    public String toString() {
+
+        return "PageTaskDBModel{" +
+                "content= " + content +
+                // "content=" + content.stream().map(TaskDBModel::toString).collect(Collectors.toList()) +
+                ", totalPages=" + totalPages +
+                ", numberOfElements=" + numberOfElements +
+                ", size=" + size +
+                ", totalElements=" + totalElements +
+                '}';
     }
 }

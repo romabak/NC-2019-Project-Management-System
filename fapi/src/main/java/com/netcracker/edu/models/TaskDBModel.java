@@ -127,4 +127,23 @@ public class TaskDBModel {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "TaskDBModel{" +
+                "id=" + id +
+                ", dueDate=" + dueDate +
+                ", createdDate=" + createdDate +
+                ", updateDate=" + updateDate +
+                ", project=" + project +
+                ", estimation=" + estimation +
+                ", status=" + status +
+                ", assignee=" + assignee.toString() +
+                ", priority=" + priority.toString() +
+                ", description='" + description + '\'' +
+                ", name='" + name + '\'' +
+                ", ticketCode='" + ticketCode + '\'' +
+                ", reporter=" + reporter.toString() +
+                '}';
+    }
 }

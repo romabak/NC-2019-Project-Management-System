@@ -1,6 +1,6 @@
 package com.netcracker.edu.service.impl;
 
-import com.netcracker.edu.models.PageTaskDBModel;
+import com.netcracker.edu.models.pageModels.PageTaskDBModel;
 import com.netcracker.edu.models.TaskDBModel;
 import com.netcracker.edu.service.TaskDataService;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,6 +33,7 @@ public class TaskDataServiceImpl implements TaskDataService {
     @Override
     public TaskDBModel saveNewTask(TaskDBModel task) {
         RestTemplate restTemplate = new RestTemplate();
+        System.out.println(task.toString());
         return restTemplate.postForEntity(backendServerUrl + "/api/task", task, TaskDBModel.class).getBody();
     }
 

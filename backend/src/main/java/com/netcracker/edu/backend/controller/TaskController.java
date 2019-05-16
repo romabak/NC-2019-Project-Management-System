@@ -31,7 +31,7 @@ public class TaskController{
 
     @RequestMapping(method = RequestMethod.POST)
     public TaskEntity saveTasks(@RequestBody TaskEntity task){
-        System.out.println("name = " + task.getName());
+        System.out.println(task.toString());
         return this.taskService.save(task);
     }
 
@@ -49,14 +49,13 @@ public class TaskController{
         return result;
     }
 
-    @RequestMapping(value = "/withSort", params = {"page", "size", "sort"}, method = RequestMethod.GET)
-    public Iterable<TaskEntity> getSortPage(@RequestParam(value = "page") int page,
-                                            @RequestParam(value = "size", defaultValue = "5") int size,
-                                            @RequestParam(value = "sort", defaultValue = "project_code") String sort){
-        Pageable pageable = PageRequest.of(page, size, Sort.by(sort));
-        Page<TaskEntity> result = taskService.findAllByName("task", pageable);
+    @RequestMapping(value = "/filter", params = {"filter", "size", "page"}, method = RequestMethod.GET)
+    public Iterable<TaskEntity> getByFilter(@RequestParam(value = "filter") String filter,
+                                            @RequestParam(value = "page") int page,
+                                            @RequestParam(value = "size") int size){
+        Pageable pageable = PageRequest.of(page, size);
+        Page<TaskEntity> result = this.taskService.findAllByFilter(filter, pageable);
         return result;
-
     }
 
 }

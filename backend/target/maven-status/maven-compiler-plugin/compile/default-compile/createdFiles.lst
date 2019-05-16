@@ -5,10 +5,10 @@ com/netcracker/edu/backend/service/UserService.class
 com/netcracker/edu/backend/entity/ProjectEntity.class
 com/netcracker/edu/backend/service/impl/StatusServiceImpl.class
 com/netcracker/edu/backend/controller/UserController.class
-com/netcracker/edu/backend/repository/StatusRepository.class
 com/netcracker/edu/backend/controller/StatusController.class
-com/netcracker/edu/backend/repository/RoleRepository.class
+com/netcracker/edu/backend/repository/StatusRepository.class
 com/netcracker/edu/backend/service/FindService.class
+com/netcracker/edu/backend/repository/RoleRepository.class
 com/netcracker/edu/backend/repository/PriorityRepository.class
 com/netcracker/edu/backend/service/impl/UserServiceImpl.class
 com/netcracker/edu/backend/entity/RoleEntity.class
@@ -21,8 +21,8 @@ com/netcracker/edu/backend/repository/CommentRepository.class
 com/netcracker/edu/backend/controller/RoleController.class
 com/netcracker/edu/backend/service/impl/PriorityServiceImpl.class
 com/netcracker/edu/backend/repository/TaskRepository.class
-com/netcracker/edu/backend/entity/StatusEntity.class
 com/netcracker/edu/backend/controller/CommentController.class
+com/netcracker/edu/backend/entity/StatusEntity.class
 com/netcracker/edu/backend/controller/PriorityController.class
 com/netcracker/edu/backend/entity/TaskEntity.class
 com/netcracker/edu/backend/repository/ProjectRepository.class

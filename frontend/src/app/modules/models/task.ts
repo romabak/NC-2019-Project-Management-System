@@ -7,7 +7,7 @@ export class Task {
   description: string;
   dueDate: string;
   priority: string;
-  status: string; //get, but didn't post
+  status: string;
   estimation: string;
   assignee: User;
   createdDate: string;

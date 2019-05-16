@@ -7,21 +7,14 @@
       </div>
     </div>
     <div class="form-row">
-      <div class="col-sm-3" [hidden]="name.valid || name.pristine"
-           class="alert alert-danger">
-        Email is required
-      </div>
-    </div>
-    <div class="form-row">
       <div class="col-sm-3">
         <label for="Password">Password</label>
         <input type="password" class="form-control" id="Password" formControlName = "password">
       </div>
     </div>
     <div class="checkbox">
-      <label><input type="checkbox"> Remember me</label>
+      <label><input type="checkbox" [(ngModel)]="rememberMe" (change)="rememberMe= !rememberMe"> Remember me</label>
     </div>
     <button  class="btn btn-success" (click) = "login()">LogIn</button>
-    <button  class="btn btn-success" (click) = "logout()">Logout</button>
   </form>
 </div>

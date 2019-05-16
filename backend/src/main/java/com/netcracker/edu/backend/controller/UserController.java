@@ -4,6 +4,10 @@ import com.netcracker.edu.backend.entity.UserEntity;
 import com.netcracker.edu.backend.service.FindService;
 import com.netcracker.edu.backend.service.IDefaultOperationService;
 import com.netcracker.edu.backend.service.UserService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -41,5 +45,18 @@ public class UserController {
     public ResponseEntity getUserByName(@PathVariable(name = "email") String email){
 	    Optional<UserEntity> user = userService.findByEmail(email);
         return ResponseEntity.ok(user.get());
+    }
+
+    @RequestMapping(value = "", params = {"size", "page", "role"}, method = RequestMethod.GET)
+    public Iterable<UserEntity> getPageWithoutUsersWithRole(@RequestParam(value = "page") int page,
+                                                            @RequestParam(value = "size") int size,
+                                                            @RequestParam(value = "role") String role){
+        Pageable pageable = PageRequest.of(page, size);
+        return userService.findAllWithout(role, pageable);
+    }
+
+    @RequestMapping(value = "", params = {"role"}, method = RequestMethod.GET)
+    public Iterable<UserEntity> getPageWithOneRole(@RequestParam(value = "role") String role){
+        return this.userService.findAllByRole(role);
     }
 }

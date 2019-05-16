@@ -1,41 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginUser } from '../modules/models/login-user';
 import { AppService } from '../services/app.service';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import { UserService } from '../services/user.service';
+
 
 @Component({
   selector: 'app-authorization',
   templateUrl: './authorization.component.html',
   styleUrls: ['./authorization.component.css']
 })
+
 export class AuthorizationComponent implements OnInit {
-  public isLoggedIn = false;
 
-  public email: string;
-  public password: string;
-
-  public loginUser = {
-  	'email': this.email,
-  	'password': this.password
-  }
-
-  loginForm: FormGroup;
+  public loginForm: FormGroup;
+  public rememberMe:boolean = false;
 
   private subscriptions: Subscription[] = [];
 
-  constructor(private authService: AppService, private fb: FormBuilder) { }
+  constructor(
+    private userService:UserService,
+    private authService: AppService, 
+    private fb: FormBuilder
+    ) { }
 
   ngOnInit() {
-    this.authService.checkCredentials();
     this.initLoginForm();
+    this.authService.checkCredentials();
   }
 
   login(){
-  	this.subscriptions.push(this.authService.obtainAccessToken(this.loginForm.value).subscribe(token=>{
-  		this.authService.saveToken(token);
-  	}));
-    console.log(this.loginForm.value);
+    localStorage.setItem('rememberMe', JSON.stringify(this.rememberMe));
+    this.authService.obtainAccessToken(this.loginForm.value);
   }
 
   logout(){

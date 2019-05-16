@@ -6,44 +6,45 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
+  <div class="modal-body" [formGroup]="formControl">
     <div>
       <label for = "code">Project code</label>
-      <select id = "code" [(ngModel)]="newTask.project">
+      <select id = "code" class="form-control" formControlName="projectCode" [(ngModel)]="newTask.project">
+        <option disabled="disabled">Выберите проект</option>
         <option [value]="project.code" *ngFor="let project of allProjects">{{project.code}}</option>
       </select>
     </div>
     <div>
       <label for = "name">Name</label>
-      <input id = "name" class="form-control" name="name" [(ngModel)]="newTask.name"/>
+      <input id = "name" class="form-control" formControlName="name" [(ngModel)]="newTask.name" required/>
     </div>
     <div>
       <label for = "description">Description</label>
-      <input id = "description" class="form-control" name="name" [(ngModel)]="newTask.description"/>
+      <input id = "description" class="form-control" formControlName="description" [(ngModel)]="newTask.description" required />
     </div>
     <div>
       <label for = "priority">Priority</label>
-        <select id = "priority" [(ngModel)]="newTask.priority">
-          <option [value] = "priority.priority" *ngFor="let priority of allPriority">{{priority.priority}}</option>
-        </select>
+      <select id = "priority" class="form-control" formControlName="priority" [(ngModel)]="newTask.priority">
+        <option [value] = "priority.priority" *ngFor="let priority of allPriority">{{priority.priority}}</option>
+      </select>
     </div>
     <div>
       <label for = "data">Due Data</label>
-      <input id = "data" type="date" min = "2018-01-01" [(ngModel)]="newTask.dueDate"/>
+      <input id = "data" class="form-control" type="date" min = "2019-01-01" formControlName="dueDate" [(ngModel)]="newTask.dueDate" required />
     </div>
     <div>
       <label for = "estimation">Estimation</label>
-      <input id = "estimation" class="form-control" name="name" [(ngModel)]="newTask.estimation"/>
+      <input id = "estimation" class="form-control" formControlName="estimation" [(ngModel)]="newTask.estimation" required />
     </div>
     <div>
       <label for = "assignee">Assignee</label>
-      <select id = "assignee" [(ngModel)] = "newTask.assignee">
-        <option [value] = "user.email" *ngFor = "let user of allUsers">{{user.firstName + " "+ user.secondName}}</option>
+      <select id = "assignee" class="form-control" formControlName="assignee" [(ngModel)] = "newTask.assignee">
+        <option [ngValue] = "user" *ngFor = "let user of allUsers">{{user.firstName + " "+ user.secondName}}</option>
       </select>
     </div>
   </div>
   <div class="modal-footer">
-    <button (click)="saveNewTask()" type="button" class="btn btn-default" data-dismiss="modal">Create</button>
+    <button [disabled]="!formControl.valid" (click)="saveNewTask()" type="button" class="btn btn-default" data-dismiss="modal">Create</button>
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
   </div>
 </div>

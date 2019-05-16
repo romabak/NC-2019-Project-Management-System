@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -62,5 +63,10 @@ public class TaskServiceImpl implements TaskService {
 	@Override
 	public Page<TaskEntity> findAllByName(String name, Pageable pageable) {
 		return this.repository.findAllByName(name, pageable);
+	}
+
+	@Override
+	public Page<TaskEntity> findAllByFilter(String str, Pageable pageable){
+		return this.repository.findAllByFilter(str, pageable);
 	}
 }

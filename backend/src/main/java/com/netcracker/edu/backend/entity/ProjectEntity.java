@@ -24,7 +24,7 @@ public class ProjectEntity {
     }
 
     
-    @Column(name = "edu")
+    @Column(name = "name")
     public String getName() {
         return name;
     }

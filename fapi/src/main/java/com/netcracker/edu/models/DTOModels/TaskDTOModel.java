@@ -13,7 +13,7 @@ public class TaskDTOModel {
     private String project;
     private int estimation;
     private String status;
-    private UserDTOModel assignee;
+    private UserDBModel assignee;
     private String priority;
     private String description;
     private String name;
@@ -37,7 +37,7 @@ public class TaskDTOModel {
                 task.getDescription(),
                 task.getName(),
                 task.getTicketCode(),
-                null
+                task.getReporter().getFirstName() + task.getReporter().getSecondName()
         );
     }
 
@@ -49,7 +49,7 @@ public class TaskDTOModel {
         this.project = project;
         this.estimation = estimation;
         this.status = status;
-        this.assignee = new UserDTOModel(assignee);
+        this.assignee = assignee;
         this.priority = priority;
         this.description = description;
         this.name = name;
@@ -113,11 +113,11 @@ public class TaskDTOModel {
         this.status = status;
     }
 
-    public UserDTOModel getAssignee() {
+    public UserDBModel getAssignee() {
         return assignee;
     }
 
-    public void setAssignee(UserDTOModel assignee) {
+    public void setAssignee(UserDBModel assignee) {
         this.assignee = assignee;
     }
 
@@ -159,5 +159,24 @@ public class TaskDTOModel {
 
     public void setReporter(String reporter) {
         this.reporter = reporter;
+    }
+
+    @Override
+    public String toString() {
+        return "TaskDTOModel{" +
+                "id=" + id +
+                ", dueDate=" + dueDate +
+                ", createdDate=" + createdDate +
+                ", updateDate=" + updateDate +
+                ", project='" + project + '\'' +
+                ", estimation=" + estimation +
+                ", status='" + status + '\'' +
+                ", assignee=" + assignee.toString() +
+                ", priority='" + priority.toString() + '\'' +
+                ", description='" + description + '\'' +
+                ", name='" + name + '\'' +
+                ", ticketCode='" + ticketCode + '\'' +
+                ", reporter='" + reporter + '\'' +
+                '}';
     }
 }

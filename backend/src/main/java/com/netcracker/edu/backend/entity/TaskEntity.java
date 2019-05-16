@@ -16,7 +16,7 @@ public class TaskEntity {
     private String name;
     private String ticketCode;
     private Date updateDate;
-    private Integer reporter;
+    private UserEntity reporter;
     private PriorityEntity priority;
     private StatusEntity status;
     private UserEntity assignee;
@@ -104,14 +104,14 @@ public class TaskEntity {
     }
 
     
-    @Column(name = "reporter")
-    public Integer getReporter() {
-        return reporter;
-    }
+    // @Column(name = "reporter")
+    // public UserEntity getReporter() {
+    //     return reporter;
+    // }
 
-    public void setReporter(Integer reporter) {
-        this.reporter = reporter;
-    }
+    // public void setReporter(UserEntity reporter) {
+    //     this.reporter = reporter;
+    // }
 
     @PrePersist
     public void prePresist(){
@@ -119,7 +119,6 @@ public class TaskEntity {
         // this.createdDate = this.updateDate = new java.sql.Date(now.getTime());
         StatusEntity status = new StatusEntity(1, "open");
         this.status = status;
-        this.reporter = null;
     }
 
     @PreUpdate
@@ -179,6 +178,16 @@ public class TaskEntity {
     }
 
     @ManyToOne
+    @JoinColumn(name = "reporter", referencedColumnName = "id", nullable = false)
+    public UserEntity getReporter() {
+        return reporter;
+    }
+
+    public void setReporter(UserEntity reporter) {
+        this.reporter = reporter;
+    }
+
+    @ManyToOne
     @JoinColumn(name = "project_id", referencedColumnName = "id")
     public ProjectEntity getProject() {
         return project;
@@ -186,5 +195,24 @@ public class TaskEntity {
 
     public void setProject(ProjectEntity project) {
         this.project = project;
+    }
+
+    @Override
+    public String toString() {
+        return "TaskEntity{" +
+                "id=" + id +
+                ", createdDate=" + createdDate +
+                ", description='" + description + '\'' +
+                ", dueDate=" + dueDate +
+                ", estimation=" + estimation +
+                ", name='" + name + '\'' +
+                ", ticketCode='" + ticketCode + '\'' +
+                ", updateDate=" + updateDate +
+                ", reporter=" + reporter.toString() +
+                ", priority=" + priority +
+                ", status=" + status +
+                ", assignee=" + assignee.toString() +
+                ", project=" + project +
+                '}';
     }
 }

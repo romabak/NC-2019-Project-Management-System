@@ -1,6 +1,6 @@
 package com.netcracker.edu.service;
 
-import com.netcracker.edu.models.PageTaskDBModel;
+import com.netcracker.edu.models.pageModels.PageTaskDBModel;
 import com.netcracker.edu.models.TaskDBModel;
 
 import java.util.List;

@@ -6,6 +6,7 @@ import com.netcracker.edu.service.UserDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -42,8 +43,12 @@ import javax.annotation.Resource;
      protected void configure(HttpSecurity http) throws Exception{
          http.cors().and().csrf().disable()
          .authorizeRequests()
-            .antMatchers("/api/token/*").permitAll()
-            .antMatchers("/api/**").hasRole("DEVELOPER")
+//            .antMatchers("/api/task").hasAnyRole("PROJECT MANAGER","DEVELOPER", "TESTER")
+//            .antMatchers("/api/user").hasAnyRole("ADMIN", "PROJECT MANAGER")
+//            .antMatchers(HttpMethod.POST, "/api/task").hasRole("PROJECT MANAGER")
+//            .antMatchers(HttpMethod.POST, "/api/project").hasRole("PROJECT MANAGER")
+//            .antMatchers("/api/token/generate-token").permitAll()
+                 .antMatchers("/**").permitAll()
                  .and()
                  .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
                  .and()

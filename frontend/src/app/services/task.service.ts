@@ -11,9 +11,9 @@ import { PageTask } from '../modules/models/page-task';
 })
 export class TaskService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  saveNewTask(task : Task): Observable<Task> {
+  saveNewTask(task: Task): Observable<Task> {
     return this.http.post<Task>('/api/task', task);
   }
 

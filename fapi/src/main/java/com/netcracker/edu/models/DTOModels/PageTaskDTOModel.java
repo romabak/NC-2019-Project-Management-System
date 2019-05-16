@@ -1,7 +1,13 @@
 package com.netcracker.edu.models.DTOModels;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import com.netcracker.edu.models.pageModels.PageUserDBModel;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PageTaskDTOModel {
 
     private List<TaskDTOModel> content;
@@ -10,7 +16,7 @@ public class PageTaskDTOModel {
     private int size;
     private int totalElements;
 
-    public PageTaskDTOModel() {
+    public PageTaskDTOModel(PageUserDBModel pageDb) {
     }
 
     public PageTaskDTOModel(List<TaskDTOModel> content, int totalPages, int numberOfElements, int size, int totalElements) {
@@ -59,5 +65,16 @@ public class PageTaskDTOModel {
 
     public void setTotalElements(int totalElements) {
         this.totalElements = totalElements;
+    }
+
+    @Override
+    public String toString() {
+        return "PageTaskDTOModel{" +
+                "content=" + content.stream().map(TaskDTOModel::toString).collect(Collectors.toList()) +
+                ", totalPages=" + totalPages +
+                ", numberOfElements=" + numberOfElements +
+                ", size=" + size +
+                ", totalElements=" + totalElements +
+                '}';
     }
 }

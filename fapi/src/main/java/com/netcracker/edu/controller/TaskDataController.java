@@ -3,7 +3,7 @@ package com.netcracker.edu.controller;
 
 import com.netcracker.edu.models.DTOModels.PageTaskDTOModel;
 import com.netcracker.edu.models.DTOModels.TaskDTOModel;
-import com.netcracker.edu.models.PageTaskDBModel;
+import com.netcracker.edu.models.pageModels.PageTaskDBModel;
 import com.netcracker.edu.models.TaskDBModel;
 import com.netcracker.edu.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +44,8 @@ public class TaskDataController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<TaskDTOModel> getById(@PathVariable (name = "id") int id){
-        TaskDTOModel assignee = new TaskDTOModel(taskDataService.getById(id));
-        System.out.println(assignee.getAssignee().getId());
+//        TaskDTOModel assignee = new TaskDTOModel(taskDataService.getById(id));
+//        System.out.println(assignee.getAssignee().getId());
         return Optional.ofNullable(taskDataService.getById(id))
                 .map(task-> new ResponseEntity<>(new TaskDTOModel(task), HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
@@ -54,6 +54,7 @@ public class TaskDataController {
     @RequestMapping(value = "", params = {"page", "size"}, method = RequestMethod.GET)
     public ResponseEntity<PageTaskDTOModel> getPage(@RequestParam(value = "page") int page, @RequestParam(value = "size", defaultValue = "5") int size){
          PageTaskDBModel tasks = taskDataService.getPage(page, size);
+         System.out.println(tasks.toString());
          List<TaskDTOModel> tasksDto =  tasks.getContent().stream().map(task-> new TaskDTOModel(task)).collect(Collectors.toList());
          PageTaskDTOModel pageDto = new PageTaskDTOModel(tasksDto, tasks.getTotalPages(), tasks.getNumberOfElements(), tasks.getSize(), tasks.getTotalElements());
          return ResponseEntity.ok(pageDto);
@@ -71,14 +72,13 @@ public class TaskDataController {
 
     private TaskDBModel convertToEntity(TaskDTOModel taskDto){
         TaskDBModel taskDBModel = new TaskDBModel();
-        taskDBModel.setId(taskDto.getId());
         taskDBModel.setCreatedDate(taskDto.getCreatedDate());
-//        taskDBModel.setReporter(userDataService.getByEmail(taskDto.getReporter()));
+        taskDBModel.setReporter(userDataService.getByEmail(taskDto.getReporter()));
+        taskDBModel.setAssignee(userDataService.getByEmail(taskDto.getAssignee().getEmail()));
         taskDBModel.setDueDate(taskDto.getDueDate());
         taskDBModel.setDescription(taskDto.getDescription());
         taskDBModel.setName(taskDto.getName());
         taskDBModel.setPriority(priorityDataService.getByPriority(taskDto.getPriority()));
-        taskDBModel.setAssignee(userDataService.getByEmail(taskDto.getAssignee().getEmail()));
         taskDBModel.setProject(projectDataService.getProjectByCode(taskDto.getProject()));
         taskDBModel.setEstimation(taskDto.getEstimation());
         taskDBModel.setStatus(statusDataService.getByStatus(taskDto.getStatus()));

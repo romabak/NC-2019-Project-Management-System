@@ -1,8 +1,10 @@
 package com.netcracker.edu.models;
 
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties(value = {"password"}, allowSetters= true)
+// @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserDBModel {
 
     private int id;
@@ -56,7 +58,7 @@ public class UserDBModel {
     public void setEmail(String email) {
         this.email = email;
     }
-
+    
     public String getPassword() {
         return password;
     }
@@ -73,4 +75,15 @@ public class UserDBModel {
         this.role = role;
    }
 
+    @Override
+    public String toString() {
+        return "UserDBModel{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role.toString() +
+                '}';
+    }
 }

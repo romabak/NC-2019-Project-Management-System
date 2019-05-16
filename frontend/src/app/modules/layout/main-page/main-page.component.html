@@ -1,1 +1,8 @@
-<app-task-table></app-task-table>
+<app-buttons></app-buttons>
+<div *ngIf="isAdmin;then userTableBlock else taskTableBlock"></div>
+<ng-template #userTableBlock>
+	<app-user-table ></app-user-table>
+</ng-template>
+<ng-template #taskTableBlock>
+	<app-task-table></app-task-table>
+</ng-template>

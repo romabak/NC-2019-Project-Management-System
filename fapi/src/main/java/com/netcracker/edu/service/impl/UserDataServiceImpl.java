@@ -1,6 +1,7 @@
 package com.netcracker.edu.service.impl;
 
 import com.netcracker.edu.models.UserDBModel;
+import com.netcracker.edu.models.pageModels.PageUserDBModel;
 import com.netcracker.edu.service.UserDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -44,6 +45,19 @@ public class UserDataServiceImpl implements UserDetailsService, UserDataService 
         return restTemplate.getForObject(backendServerUrl + "/api/user/" + email, UserDBModel.class);
     }
 
+    @Override
+    public PageUserDBModel getPageWithoutAdmin(int page, int size) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(backendServerUrl + "/api/user?page=" + page + "&size=" + size + "&role=admin", PageUserDBModel.class);
+    }
+
+    @Override
+    public List<UserDBModel> getOnlyDeveloper() {
+        RestTemplate restTemplate = new RestTemplate();
+        UserDBModel[] userDBModelsResponse = restTemplate.getForObject(backendServerUrl + "/api/user?role=developer", UserDBModel[].class);
+        System.out.println(userDBModelsResponse);
+        return userDBModelsResponse == null ? Collections.emptyList() : Arrays.asList(userDBModelsResponse);
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -52,6 +66,12 @@ public class UserDataServiceImpl implements UserDetailsService, UserDataService 
             throw new UsernameNotFoundException("Invalid username or password.");
         }
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), getAuthority(user));
+    }
+
+    @Override
+    public void delete(int id){
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.delete(backendServerUrl + "/api/user/" + id, UserDBModel.class);
     }
 
     private Set<SimpleGrantedAuthority> getAuthority(UserDBModel user){

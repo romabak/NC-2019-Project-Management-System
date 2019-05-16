@@ -1,19 +1,19 @@
-drop database netcracker;
+    drop database if exists netcracker;
 
 create database netcracker;
 
 use netcracker;
 
 create table role(
-    id int auto_increment not null ,
-    role varchar(15) not null ,
+    id int auto_increment not null,
+    role varchar(15) not null,
     primary key (id)
-) ENGINE = InnoDB;
+)ENGINE = InnoDB;
 
 create table project(
     id int auto_increment not null ,
     primary key (id),
-    name varchar(50) not null unique ,
+    name varchar(50) not null unique,
     code char(4) not null unique ,
     summary text not null
 )ENGINE = InnoDB;
@@ -36,13 +36,10 @@ create table user(
     email varchar(50) not null unique ,
     first_name varchar(50) not null ,
     second_name varchar(50) not null ,
-    password varchar(50) not null ,
+    password varchar(255) not null ,
     role_id int not null ,
     foreign key (role_id)
-        references role(id),
-    project_id int,
-    foreign key (project_id)
-        references project(id)
+        references role(id)
 )ENGINE = InnoDB;
 
 create table task(
@@ -58,7 +55,9 @@ create table task(
     status_id int not null,
     assignee int not null,
     reporter int,
-    priority_id int not null ,
+    priority_id int not null,
+    project_id int not null,
+    foreign key (project_id) references project(id),
     foreign key (status_id) references status(id),
     foreign key (assignee) references user(id),
     foreign key (reporter) references user(id),
@@ -68,13 +67,13 @@ create table task(
 create trigger insert_trigger
     before insert on task
     for each row
-    set new.ticket_code = concat((select code from project where id = new.id),'-', new.id),
+    set new.ticket_code = concat((select code from project where id = new.project_id),'-', new.id),
     new.created_date = date(now()), new.update_date = date(now());
 
 create trigger update_date
     before update on task
     for each row
-    set new.update = date(now());
+    set new.update_date = date(now());
 
 
 create table comment(
@@ -103,5 +102,3 @@ insert into priority (priority) values ('critical');
 insert into priority (priority) values ('major');
 insert into priority (priority) values ('normal');
 insert into priority (priority) values ('minor');
-
-

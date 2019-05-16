@@ -1,27 +1,21 @@
- <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>New Project</h2>
-        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div>
-          <label for = "code">Code</label>
-          <input id = "code"[(ngModel)]="newProject.code">
-        </div>
-        <div>
-          <label for = "name">Name</label>
-          <input id = "name" [(ngModel)]="newProject.name">
-        </div>
-        <div>
-          <label for = "summary">Summary</label>
-          <input id = "summary" [(ngModel)]="newProject.summary">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button (click)="saveNewProject()" type="button" class="btn btn-default" data-dismiss="modal">Create</button>
-        <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
-      </div>
-    </div>
+<!-- Modal content-->
+<div class="modal-content">
+  <div class="modal-header">
+    <h2>New Project</h2>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" [formGroup]="formControl">
+      <label for = "code">Code</label>
+      <input id = "code" type="text" class="form-control" formControlName="code" [(ngModel)]="newProject.code" pattern="[0-9]{4}" required="required"z />
+      <label for = "name">Name</label>
+      <input id = "name" type="text" class="form-control" formControlName="name" [(ngModel)]="newProject.name" required />
+      <label for = "summary">Summary</label>
+      <input id = "summary" type="text" class="form-control" formControlName="summary" [(ngModel)]="newProject.summary" required />
+  </div>
+  <div class="modal-footer">
+    <button [disabled]="!formControl.valid" (click)="saveNewProject()" type="button" class="btn btn-default" data-dismiss="modal">Create</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+  </div>
+</div>
