@@ -13,7 +13,7 @@ public class TaskDTOModel {
     private String project;
     private int estimation;
     private String status;
-    private UserDBModel assignee;
+    private UserDTOModel assignee;
     private String priority;
     private String description;
     private String name;
@@ -32,7 +32,7 @@ public class TaskDTOModel {
                 task.getProject().getCode(),
                 task.getEstimation(),
                 task.getStatus().getStatus(),
-                task.getAssignee(),
+                new UserDTOModel(task.getAssignee()),
                 task.getPriority().getPriority(),
                 task.getDescription(),
                 task.getName(),
@@ -41,7 +41,7 @@ public class TaskDTOModel {
         );
     }
 
-    public TaskDTOModel(int id, Date dueDate, Date createdDate, Date updateDate, String project, int estimation, String status, UserDBModel assignee, String priority, String description, String name, String ticketCode, String reporter) {
+    public TaskDTOModel(int id, Date dueDate, Date createdDate, Date updateDate, String project, int estimation, String status, UserDTOModel assignee, String priority, String description, String name, String ticketCode, String reporter) {
         this.id = id;
         this.dueDate = dueDate;
         this.createdDate = createdDate;
@@ -113,11 +113,11 @@ public class TaskDTOModel {
         this.status = status;
     }
 
-    public UserDBModel getAssignee() {
+    public UserDTOModel getAssignee() {
         return assignee;
     }
 
-    public void setAssignee(UserDBModel assignee) {
+    public void setAssignee(UserDTOModel assignee) {
         this.assignee = assignee;
     }
 

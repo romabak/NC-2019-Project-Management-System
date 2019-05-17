@@ -33,6 +33,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST)
     public UserEntity saveNewUser(@RequestBody UserEntity user){
+        System.out.println(user.toString());
         return userService.save(user);
     }
 

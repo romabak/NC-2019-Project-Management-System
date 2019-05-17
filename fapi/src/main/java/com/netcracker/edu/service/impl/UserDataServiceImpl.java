@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service("customUserDetailsService")
 public class UserDataServiceImpl implements UserDetailsService, UserDataService {
@@ -27,7 +28,7 @@ public class UserDataServiceImpl implements UserDetailsService, UserDataService 
     @Override
     public UserDBModel saveNewUser(UserDBModel user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        // System.out.println("password = " + user.getPassword());
+        System.out.println(user.toString());
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.postForEntity(backendServerUrl + "/api/user", user, UserDBModel.class).getBody();
     }
@@ -76,7 +77,6 @@ public class UserDataServiceImpl implements UserDetailsService, UserDataService 
 
     private Set<SimpleGrantedAuthority> getAuthority(UserDBModel user){
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
-        System.out.println(user.getRole().getRole());
         authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole().getRole().toUpperCase()));
         System.out.println(authorities);
         return authorities;

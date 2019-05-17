@@ -1,6 +1,8 @@
 package com.netcracker.edu.controller;
 
 
+import com.netcracker.edu.models.DTOModels.PageUserDTOModel;
+import com.netcracker.edu.models.DTOModels.UserDTOModel;
 import com.netcracker.edu.models.UserDBModel;
 import com.netcracker.edu.models.pageModels.PageUserDBModel;
 import com.netcracker.edu.service.RoleDataService;
@@ -10,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -26,8 +29,8 @@ public class UserDataController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ResponseEntity<List<UserDBModel>> getAllUsers(){
-        List<UserDBModel> users = userDataService.getAllUsers();
+    public ResponseEntity<List<UserDTOModel>> getAllUsers(){
+        List<UserDTOModel> users = userDataService.getAllUsers().stream().map(user-> new UserDTOModel(user)).collect(Collectors.toList());
         return ResponseEntity.ok(users);
     }
 
@@ -37,8 +40,8 @@ public class UserDataController {
     }
 
     @RequestMapping(value = "/{email}", method = RequestMethod.GET)
-    public ResponseEntity<UserDBModel> getByEmail(@PathVariable(name = "email") String email){
-        return ResponseEntity.ok(userDataService.getByEmail(email));
+    public ResponseEntity<UserDTOModel> getByEmail(@PathVariable(name = "email") String email){
+        return ResponseEntity.ok(new UserDTOModel(userDataService.getByEmail(email)));
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
@@ -47,15 +50,17 @@ public class UserDataController {
     }
 
     @RequestMapping(value = "", params = {"page", "size"}, method = RequestMethod.GET)
-    public ResponseEntity<PageUserDBModel> getPageOfUsers(@RequestParam(value = "page")int page, @RequestParam(value = "size")int size){
+    public ResponseEntity<PageUserDTOModel> getPageOfUsers(@RequestParam(value = "page")int page, @RequestParam(value = "size")int size){
         PageUserDBModel pageDb = userDataService.getPageWithoutAdmin(page, size);
-        return ResponseEntity.ok(pageDb);
+        PageUserDTOModel pageDto = new PageUserDTOModel(pageDb);
+        return ResponseEntity.ok(pageDto);
     }
 
     @RequestMapping(value = "/dev", method = RequestMethod.GET)
-    public ResponseEntity<List<UserDBModel>> getPageOfUsersWithOnlyDev(){
+    public ResponseEntity<List<UserDTOModel>> getPageOfUsersWithOnlyDev(){
         List<UserDBModel> developers = this.userDataService.getOnlyDeveloper();
-        return ResponseEntity.ok(developers);
+        List<UserDTOModel> dev = developers.stream().map(user-> new UserDTOModel(user)).collect(Collectors.toList());
+        return ResponseEntity.ok(dev);
     }
 
 }

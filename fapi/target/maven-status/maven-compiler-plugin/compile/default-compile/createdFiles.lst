@@ -16,6 +16,7 @@ com/netcracker/edu/security/SecurityJwtConstants.class
 com/netcracker/edu/models/DTOModels/PageTaskDTOModel.class
 com/netcracker/edu/models/ProjectViewModel.class
 com/netcracker/edu/service/impl/RoleDataServiceImpl.class
+com/netcracker/edu/models/DTOModels/PageUserDTOModel.class
 com/netcracker/edu/service/RoleDataService.class
 com/netcracker/edu/service/impl/ProjectDataServiceImpl.class
 com/netcracker/edu/models/StatusViewModel.class
@@ -37,3 +38,4 @@ com/netcracker/edu/models/pageModels/PageTaskDBModel.class
 com/netcracker/edu/service/PriorityDataService.class
 com/netcracker/edu/models/AuthToken.class
 com/netcracker/edu/controller/PriorityDataController.class
+com/netcracker/edu/models/DTOModels/UserDTOModel.class

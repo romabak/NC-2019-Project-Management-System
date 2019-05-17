@@ -10,8 +10,10 @@
 /home/roman/java/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/service/impl/RoleDataServiceImpl.java
 /home/roman/java/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/service/UserDataService.java
 /home/roman/java/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/filter/CORSFilter.java
+/home/roman/java/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/models/DTOModels/UserDTOModel.java
 /home/roman/java/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/models/DTOModels/TaskDTOModel.java
 /home/roman/java/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/service/PriorityDataService.java
+/home/roman/java/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/models/DTOModels/PageUserDTOModel.java
 /home/roman/java/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/models/UserDBModel.java
 /home/roman/java/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/models/Page.java
 /home/roman/java/NC-2019-Project-Management-System/fapi/src/main/java/com/netcracker/edu/service/impl/ProjectDataServiceImpl.java
