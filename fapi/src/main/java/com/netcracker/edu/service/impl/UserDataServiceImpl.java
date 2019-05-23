@@ -1,5 +1,6 @@
 package com.netcracker.edu.service.impl;
 
+import com.netcracker.edu.models.DTOModels.PageUserDTOModel;
 import com.netcracker.edu.models.UserDBModel;
 import com.netcracker.edu.models.pageModels.PageUserDBModel;
 import com.netcracker.edu.service.UserDataService;
@@ -47,9 +48,13 @@ public class UserDataServiceImpl implements UserDetailsService, UserDataService 
     }
 
     @Override
-    public PageUserDBModel getPageWithoutAdmin(int page, int size) {
+    public PageUserDBModel getPageUserByFilter(int page, int size, String filter) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(backendServerUrl + "/api/user?page=" + page + "&size=" + size + "&role=admin", PageUserDBModel.class);
+        if(filter == null){
+            return restTemplate.getForObject(backendServerUrl + "/api/user?page="+page+"&size="+size+"&role=admin", PageUserDBModel.class);
+        } else {
+            return restTemplate.getForObject(backendServerUrl + "/api/user?page="+page+"&size="+size+"&role=admin&filter="+filter, PageUserDBModel.class);
+        }
     }
 
     @Override

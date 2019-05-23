@@ -27,7 +27,7 @@ public class UserDTOModel {
     }
 
     public UserDTOModel(UserDBModel user){
-        this(user.getId(), user.getEmail(), user.getFirstName(), user.getSecondName(), user.getRole());
+        this(user.getId(), user.getFirstName(), user.getSecondName(), user.getEmail(), user.getRole());
     }
 
 

@@ -10,7 +10,6 @@ import { ProjectPageComponent } from './project-page/project-page.component';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { LayoutModule} from './modules/layout/layout.module';
 import { MainPageModule} from './modules/main-page/main-page.module';
-import { TaskPageComponent } from './modules/task-page/task-page.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -18,8 +17,7 @@ import { CookieService } from 'ngx-cookie-service';
   declarations: [
     AppComponent,
     AuthorizationComponent,
-    ProjectPageComponent,
-    TaskPageComponent
+    ProjectPageComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +28,8 @@ import { CookieService } from 'ngx-cookie-service';
     Ng4LoadingSpinnerModule,
     LayoutModule,
     MainPageModule,
-    OAuthModule
+    OAuthModule,
+    // ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'})  
   ],
   providers: [ CookieService ],
   bootstrap: [

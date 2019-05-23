@@ -8,21 +8,20 @@
   </div>
   <div class="modal-body" [formGroup] = "formControl">
     <label for="firstName">Name</label>
-    <input id = "firstName" class="form-control" formControlName="name" [(ngModel)]="editableUser.firstName" required />
+    <input id = "firstName" class="form-control" formControlName="name" [(ngModel)]="editableUser.firstName" pattern=".{2,}" />
     <label for="secondName">Surname</label>
-    <input id = "secondName" class="form-control" formControlName="surname" [(ngModel)]="editableUser.secondName" required />
+    <input id = "secondName" class="form-control" formControlName="surname" [(ngModel)]="editableUser.secondName" pattern=".{2,}"/>
     <label for = "email">Email</label>
-    <input id = "email" type = "email" class="form-control" formControlName="email" [(ngModel)]="editableUser.email" required />
+    <input id = "email" type = "email" class="form-control" formControlName="email" [(ngModel)]="editableUser.email" />
     <label for = "password">Password</label>
-    <input id = "password" type = "password" class="form-control" formControlName="password" [(ngModel)]="editableUser.password" required />
+    <input id = "password" type = "password" class="form-control" formControlName="password" [(ngModel)]="editableUser.password" pattern=".{6,}" />
     <label for = "role">User Role</label>
     <select id = "role" class="form-control" formControlName="role" [(ngModel)]="editableUser.role">
-      <option disabled="disabled">Выберете роль</option>
       <option [ngValue]="role" *ngFor="let role of userRole">{{role.role}}</option>
     </select>
   </div>
   <div class="modal-footer">
-    <button  [disabled]="!formControl.valid" (click)="saveNewUser()" type="button" class="btn btn-default" data-dismiss="modal">Create</button>
+    <button  [disabled]="formControl.invalid" (click)="saveNewUser()" type="button" class="btn btn-default" data-dismiss="modal">Create</button>
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
   </div>
 </div>

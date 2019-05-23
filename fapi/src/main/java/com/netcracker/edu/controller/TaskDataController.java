@@ -44,17 +44,18 @@ public class TaskDataController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<TaskDTOModel> getById(@PathVariable (name = "id") int id){
-//        TaskDTOModel assignee = new TaskDTOModel(taskDataService.getById(id));
-//        System.out.println(assignee.getAssignee().getId());
         return Optional.ofNullable(taskDataService.getById(id))
                 .map(task-> new ResponseEntity<>(new TaskDTOModel(task), HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
-    @RequestMapping(value = "", params = {"page", "size"}, method = RequestMethod.GET)
-    public ResponseEntity<PageTaskDTOModel> getPage(@RequestParam(value = "page") int page, @RequestParam(value = "size", defaultValue = "5") int size){
-         PageTaskDBModel tasks = taskDataService.getPage(page, size);
-         System.out.println(tasks.toString());
+    @RequestMapping(value = "/{email}", params = {"page", "size"}, method = RequestMethod.GET)
+    public ResponseEntity<PageTaskDTOModel> getPage(@PathVariable(value = "email") String email,
+                                                    @RequestParam(value = "filter", required = false) String filter,
+                                                    @RequestParam(value = "page") int page,
+                                                    @RequestParam(value = "size") int size,
+                                                    @RequestParam(value = "role", required = false) String role){
+         PageTaskDBModel tasks = taskDataService.getPage(email, role, filter, page, size);
          List<TaskDTOModel> tasksDto =  tasks.getContent().stream().map(task-> new TaskDTOModel(task)).collect(Collectors.toList());
          PageTaskDTOModel pageDto = new PageTaskDTOModel(tasksDto, tasks.getTotalPages(), tasks.getNumberOfElements(), tasks.getSize(), tasks.getTotalElements());
          return ResponseEntity.ok(pageDto);
@@ -72,8 +73,9 @@ public class TaskDataController {
 
     private TaskDBModel convertToEntity(TaskDTOModel taskDto){
         TaskDBModel taskDBModel = new TaskDBModel();
+        taskDBModel.setId(taskDto.getId());
         taskDBModel.setCreatedDate(taskDto.getCreatedDate());
-        taskDBModel.setReporter(userDataService.getByEmail(taskDto.getReporter()));
+        taskDBModel.setReporter(userDataService.getByEmail(taskDto.getReporter().getEmail()));
         taskDBModel.setAssignee(userDataService.getByEmail(taskDto.getAssignee().getEmail()));
         taskDBModel.setDueDate(taskDto.getDueDate());
         taskDBModel.setDescription(taskDto.getDescription());
@@ -82,6 +84,8 @@ public class TaskDataController {
         taskDBModel.setProject(projectDataService.getProjectByCode(taskDto.getProject()));
         taskDBModel.setEstimation(taskDto.getEstimation());
         taskDBModel.setStatus(statusDataService.getByStatus(taskDto.getStatus()));
+        taskDBModel.setTicketCode(taskDto.getTicketCode());
+        taskDBModel.setClosedDate(taskDto.getClosedDate());
         return taskDBModel;
     }
 }

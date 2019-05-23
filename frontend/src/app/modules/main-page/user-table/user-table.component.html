@@ -1,4 +1,12 @@
 <div>
+  <div id="selectAndInput">
+        <select [(ngModel)] = "pageSize" (change) = loadPageForTables(page)>
+          <option [ngValue] = "5">5</option>
+          <option [ngValue] = "10">10</option>
+          <option [ngValue] = "15">15</option>
+        </select>
+        <input id="myInput" type="text" placeholder="Filter" [(ngModel)] = 'filter' (ngModelChange)="loadPageForTables('1')">
+      </div>
       <table class="table table-dark table-hover">
         <thead>
         <tr>
@@ -27,14 +35,4 @@
           </ngb-pagination>
         </tfoot>
       </table>
-      <div>
-        <select [(ngModel)] = "pageSize" (change) = loadPageForTables(page)>
-          <option [ngValue] = "5">5</option>
-          <option [ngValue] = "10">10</option>
-          <option [ngValue] = "15">15</option>
-        </select>
-        <button class="btn btn-light" (click) = logout()>Logout</button>
-        <input id="myInput" type="text" placeholder="Filter">
-        <button class="btn btn-light">Submit</button>
-      </div>
     </div>

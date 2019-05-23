@@ -33,10 +33,10 @@ export class NewUserComponent implements OnInit {
 
   private initFormControl() {
     this.formControl = this.fb.group({
-      name: ['', Validators.required],
-      surname: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(2)]],
+      surname: ['', [Validators.required, Validators.minLength(2)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       role: ['', Validators.required]
     });
   }

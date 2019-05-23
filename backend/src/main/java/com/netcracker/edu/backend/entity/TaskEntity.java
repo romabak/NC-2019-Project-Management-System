@@ -16,6 +16,8 @@ public class TaskEntity {
     private String name;
     private String ticketCode;
     private Date updateDate;
+    private Date resolvedDate;
+    private Date closedDate;
     private UserEntity reporter;
     private PriorityEntity priority;
     private StatusEntity status;
@@ -103,20 +105,27 @@ public class TaskEntity {
         this.updateDate = updateDate;
     }
 
-    
-    // @Column(name = "reporter")
-    // public UserEntity getReporter() {
-    //     return reporter;
-    // }
+    @Column(name = "resolved_date")
+    public Date getResolvedDate() {
+        return resolvedDate;
+    }
 
-    // public void setReporter(UserEntity reporter) {
-    //     this.reporter = reporter;
-    // }
+    public void setResolvedDate(Date resolvedDate) {
+        this.resolvedDate = resolvedDate;
+    }
+
+    @Column(name = "closed_date")
+    public Date getClosedDate() {
+        return closedDate;
+    }
+
+    public void setClosedDate(Date closedDate) {
+        this.closedDate = closedDate;
+    }
+
 
     @PrePersist
     public void prePresist(){
-        // java.util.Date now = new java.util.Date();
-        // this.createdDate = this.updateDate = new java.sql.Date(now.getTime());
         StatusEntity status = new StatusEntity(1, "open");
         this.status = status;
     }
@@ -211,7 +220,7 @@ public class TaskEntity {
                 ", reporter=" + reporter.toString() +
                 ", priority=" + priority +
                 ", status=" + status +
-                ", assignee=" + assignee.toString() +
+                ", assignee=" + assignee.toString()  +
                 ", project=" + project +
                 '}';
     }

@@ -1,3 +1,12 @@
 input:disabled {
 	color: black;
 }
+
+#buttons{
+	margin-top: 50px;
+}
+
+#secondButton{
+	position: relative;
+	left: 10px;
+}

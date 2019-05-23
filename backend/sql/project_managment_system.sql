@@ -48,6 +48,8 @@ create table task(
     created_date date not null,
     description text not null,
     due_date date not null,
+    resolved_date date,
+    closed_date date,
     estimation int not null,
     name varchar(50) not null unique ,
     ticket_code varchar(10),

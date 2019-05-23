@@ -1,24 +1,29 @@
-<div>
-  <table class="table table-dark table-hover">
-    <thead>
-    <tr>
-      <th>Project code</th>
-      <th>Task</th>
-      <th>TicketCode</th>
-      <th>Priority</th>
-      <th>Status</th>
-      <th>Created</th>
-      <th>Update</th>
-      <th>Due date</th>
-      <th>Estimation</th>
-      <th>Assignee</th>
-      <th>Description</th>
-      <th>Action</th>
-    </tr>
+  <div id = "selectAndInput">
+    <select id="mySelect" [(ngModel)] = "pageSize" (change)=loadPageTasks(page)>
+      <option [ngValue] = "5">5</option>
+      <option [ngValue] = "10">10</option>
+      <option [ngValue] = "15">15</option>
+    </select>
+    <input id="myInput" type="text" placeholder="Filter" [(ngModel)] = "filter" (ngModelChange)="loadPageTasks('1')" name="filter">
+  </div>
+  <div>
+    <table id="table" class="table table-dark table-hover">
+    <thead class="thead-dark">
+      <tr>
+      <th scope="col">Task</th>
+      <th scope="col">TicketCode</th>
+      <th scope="col">Priority</th>
+      <th scope="col">Status</th>
+      <th scope="col">Created</th>
+      <th scope="col">Update</th>
+      <th scope="col">Due date</th>
+      <th scope="col">Estimation</th>
+      <th scope="col">Assignee</th>
+      <th scope="col">Action</th>  
+      </tr>
     </thead>
     <tbody id="myTable">
-    <tr *ngFor="let task of tasks.content">
-      <td>{{task.project}}</td>
+      <tr *ngFor="let task of tasks.content">
       <td>{{task.name}}</td>
       <td>{{task.ticketCode}}</td>
       <td>{{task.priority }}</td>
@@ -28,9 +33,8 @@
       <td>{{task.dueDate}}</td>
       <td>{{task.estimation}}</td>
       <td>{{task.assignee.firstName + " " + task.assignee.secondName}}</td>
-      <td>{{task.description}}</td>
-      <td><button class="btn btn-light" [routerLink]="['/project-page', task.id]">Edit</button></td>
-    </tr>
+      <td><button class="btn btn-dark" [routerLink]="['/project-page', task.id]">Edit</button></td>
+      </tr>
     </tbody>
     <tfoot>
     <ngb-pagination
@@ -41,14 +45,5 @@
     </ngb-pagination>
     </tfoot>
   </table>
-  <div>
-    <select [(ngModel)] = "pageSize" (change)=loadPageTasks(page)>
-      <option [ngValue] = "5">5</option>
-      <option [ngValue] = "10">10</option>
-      <option [ngValue] = "15">15</option>
-    </select>
-    <button class="btn btn-light" (click) = logout()>Logout</button>
-    <input id="myInput" type="text" placeholder="Filter">
-    <button class="btn btn-light">Submit</button>
-  </div>
 </div>
+  

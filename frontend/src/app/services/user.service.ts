@@ -28,8 +28,12 @@ export class UserService {
     return this.http.get<User[]>('/api/user');
   }
 
-  getUserPage(page: number, size: number): Observable<PageUser> {
-    return this.http.get<PageUser>('/api/user?page=' + page + '&size=' + size);
+  getUserPage(page: number, size: number, filter: string): Observable<PageUser> {
+    if(filter === null || filter === ''){
+      return this.http.get<PageUser>('/api/user?page=' + page + '&size=' + size);
+    } else {
+      return this.http.get<PageUser>('/api/user?page=' + page + '&size=' + size + '&filter=' + filter);
+    }
   }
 
   deleteUser(id: string): Observable<User>{

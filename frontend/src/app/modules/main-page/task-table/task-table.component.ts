@@ -22,8 +22,13 @@ export class TaskTableComponent implements OnInit {
   public page = 1;
   public pageSize: number = 5;
   private subscriptions: Subscription[] = [];
-  sorting = ['projectCode', 'ticketCode'];
-  public typeInput = 'date';
+  public filter: string = null;
+  public isTester: boolean = false;
+
+  header = {
+    name: 'something',
+    direction: 'none'
+  }
 
   constructor(private taskService: TaskService,
               private auth: AppService) { }
@@ -33,15 +38,18 @@ export class TaskTableComponent implements OnInit {
   }
 
   public loadPageTasks($event: number): void {
-    this.subscriptions.push(this.taskService.getTaskPage($event - 1, this.pageSize).subscribe( task => {
+    this.subscriptions.push(this.taskService.getTaskPage($event - 1, this.pageSize, this.filter).subscribe( task => {
       this.tasks = task as PageTask;
-    }, err=>{
-      console.log('error in task-tableCompnent');
+    }, err=> {
+      console.log('error in task-table Compnent');
     }));
   }
 
-  public logout(): void{
+  public logout(): void {
     this.auth.logout();
   }
 
+  public ticket(){
+    console.log('ticket');
+  }
 }

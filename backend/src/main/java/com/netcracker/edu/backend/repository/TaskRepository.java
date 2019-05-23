@@ -14,7 +14,24 @@ import java.util.Optional;
 @Repository
 public interface TaskRepository extends PagingAndSortingRepository<TaskEntity, Integer> {
     Optional<TaskEntity> findByName(String name);
-    Page<TaskEntity> findAllByName(String name, Pageable pageable);
-    @Query(value = "select * from task where task.ticket_code = :str or task.name = :str or task.reporter in (select id from user where first_name = :str or second_name = :str) or task.assignee in (select id from user where first_name = :str or second_name = :str)", nativeQuery = true)
-    Page<TaskEntity> findAllByFilter(@Param("str") String str, Pageable pageable);
+
+    @Query(value = "select * from task where (select id from user where email = :email) in (task.reporter, task.assignee)" +
+            "and" +
+            ":str in (task.name, task.ticket_code)",
+            nativeQuery = true)
+    Page<TaskEntity> findAllByFilter(@Param("email") String email, @Param("str") String str, Pageable pageable);
+
+    @Query(value = "select * from task where task.status_id = (select id from status where status = :status)",
+        nativeQuery = true)
+    Page<TaskEntity> findAllByStatus(@Param("status") String status, Pageable page);
+
+    @Query(value = "select * from task where status_id = (select id from status where status = :status) " +
+            "and" +
+            ":filter in (task.ticket_code, task.name)", nativeQuery = true)
+    Page<TaskEntity> findAllByStatusAndFilter(@Param("status") String status, @Param("filter") String filter, Pageable page);
+
+    @Query(value = "select * from task where assignee = (select id from user where email = :email)" +
+            "or reporter = ((select id from user where email = :email))",
+    nativeQuery = true)
+    Page<TaskEntity> findAll(String email, Pageable pageable);
 }

@@ -1,9 +1,8 @@
-<div class="m-5 p-3">
+<div id="buttons" class="m-5 p-3">
   <div class="row">
-    <div class="btn-group col">
-      <button *ngIf="isPM" type="button" class="btn btn-info btn-lg" (click)="open('project')">New Project</button>
-      <button *ngIf="isAdmin" type="button" class="btn btn-info btn-lg" (click)="open('user')" >New User</button>
-      <button *ngIf="isPM" type="button" class="btn btn-info btn-lg" (click)="open('task')">New Task</button>
-      </div>
+  	<button id="project" *ngIf="isPM" type="button" class="btn btn-info btn-lg" (click)="open('project')">New Project</button>	
+  	<button id="user" *ngIf="isAdmin" type="button" class="btn btn-info btn-lg" (click)="open('user')" >New User</button>	
+  	<button id="task" *ngIf="isPM" type="button" class="btn btn-info btn-lg" (click)="open('task')">New Task</button>
+  	<button id="logout" type="button" class="btn btn-dark btn-lg" (click)="logout()">Logout</button>
   </div>
 </div>

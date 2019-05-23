@@ -50,8 +50,10 @@ public class UserDataController {
     }
 
     @RequestMapping(value = "", params = {"page", "size"}, method = RequestMethod.GET)
-    public ResponseEntity<PageUserDTOModel> getPageOfUsers(@RequestParam(value = "page")int page, @RequestParam(value = "size")int size){
-        PageUserDBModel pageDb = userDataService.getPageWithoutAdmin(page, size);
+    public ResponseEntity<PageUserDTOModel> getPageOfUsers(@RequestParam(value = "page")int page,
+                                                           @RequestParam(value = "size")int size,
+                                                           @RequestParam(value = "filter", required = false)String filter){
+        PageUserDBModel pageDb = userDataService.getPageUserByFilter(page, size, filter);
         PageUserDTOModel pageDto = new PageUserDTOModel(pageDb);
         return ResponseEntity.ok(pageDto);
     }

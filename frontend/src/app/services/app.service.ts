@@ -7,6 +7,7 @@ import { Token } from '../modules/models/token';
 import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
 import { UserService } from './user.service';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -23,10 +24,10 @@ export class AppService {
     private userService: UserService
     ){}
 
-  obtainAccessToken(loginData: LoginUser){
-    this.subscriptions.push(
-      this.http.post<Token>("/api/token/generate-token", loginData).subscribe(token=>{
-        this.userService.getUserByEmail(loginData.email).subscribe(user=>{
+  public obtainAccessToken(loginData: LoginUser){
+     this.subscriptions.push(
+      this.http.post<any>('/api/token/generate-token', loginData).subscribe(token=>{
+         this.userService.getUserByEmail(loginData.email).subscribe(user => {
           this.saveUserInfo(user, token);
         });
       }));
@@ -45,18 +46,19 @@ export class AppService {
     this.router.navigate(['main']);
   }
 
-  checkCredentials(){
+  checkCredentials(path: string) {
     if (!this.cookie.check('token') || !(localStorage.getItem('email') || sessionStorage.getItem('email'))){
         this.cookie.deleteAll();
         this.router.navigate(['']);
-    } else {
-      this.router.navigate(['main']);
+    } else{
+      this.router.navigate([path]);
     }
   }
 
-  logout(){
+  logout() {
     this.cookie.delete('token');
-    localStorage.clear();          
+    localStorage.clear();
+    sessionStorage.clear();      
     this.router.navigate(['']);
   }
 }

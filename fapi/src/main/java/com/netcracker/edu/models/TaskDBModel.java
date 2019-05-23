@@ -11,6 +11,8 @@ public class TaskDBModel {
     private Date dueDate;
     private Date createdDate;
     private Date updateDate;
+    private Date resolvedDate;
+    private Date closedDate;
     private ProjectViewModel project;
     private int estimation;
     private StatusViewModel status;
@@ -126,6 +128,22 @@ public class TaskDBModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Date getResolvedDate() {
+        return resolvedDate;
+    }
+
+    public void setResolvedDate(Date resolvedDate) {
+        this.resolvedDate = resolvedDate;
+    }
+
+    public Date getClosedDate() {
+        return closedDate;
+    }
+
+    public void setClosedDate(Date closedDate) {
+        this.closedDate = closedDate;
     }
 
     @Override

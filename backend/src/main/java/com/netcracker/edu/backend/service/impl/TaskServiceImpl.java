@@ -35,11 +35,20 @@ public class TaskServiceImpl implements TaskService {
 	}
 
 	@Override
-	public TaskEntity update(TaskEntity task){
-		Optional<TaskEntity> taskFromDB = this.repository.findById(task.getId());
-		return this.repository.save(taskFromDB.get());
+	public Page<TaskEntity> findAllByFilter(String email, String filter, Pageable pageable) {
+		return this.repository.findAllByFilter(email, filter, pageable);
 	}
-	
+
+	@Override
+	public Page<TaskEntity> findAllByStatus(String status, Pageable page) {
+		return this.repository.findAllByStatus(status, page);
+	}
+
+	@Override
+	public Page<TaskEntity> findAllByStatusAndFilter(String status, String filter, Pageable page) {
+		return this.repository.findAllByStatusAndFilter(status, filter, page);
+	}
+
 	@Override
 	public void delete(Integer id){
 		this.repository.deleteById(id);
@@ -56,17 +65,7 @@ public class TaskServiceImpl implements TaskService {
 	}
 
 	@Override
-	public Page<TaskEntity> findAll(Pageable pageable) {
-		return this.repository.findAll(pageable);
-	}
-
-	@Override
-	public Page<TaskEntity> findAllByName(String name, Pageable pageable) {
-		return this.repository.findAllByName(name, pageable);
-	}
-
-	@Override
-	public Page<TaskEntity> findAllByFilter(String str, Pageable pageable){
-		return this.repository.findAllByFilter(str, pageable);
+	public Page<TaskEntity> findAll(String email, Pageable pageable) {
+		return this.repository.findAll(email, pageable);
 	}
 }

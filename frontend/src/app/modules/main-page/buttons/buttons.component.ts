@@ -3,6 +3,7 @@ import { NewProjectComponent } from '../popup/new-project/new-project.component'
 import { NewTaskComponent } from '../popup/new-task/new-task.component';
 import { NewUserComponent } from '../popup/new-user/new-user.component';
 import { NgbModal, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { AppService } from '../../../services/app.service';
 
 const MODALS = {
   project: NewProjectComponent,
@@ -21,7 +22,8 @@ export class ButtonsComponent implements OnInit {
   public isAdmin:boolean = false;
   public isPM:boolean = false;
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal,
+              private auth: AppService) { }
 
   ngOnInit() {
     this.checkRole();
@@ -37,6 +39,10 @@ export class ButtonsComponent implements OnInit {
     } else if(localStorage.getItem('role') === 'project manager' || sessionStorage.getItem('role') === 'project manager'){
       this.isPM = true;
     }
+  }
+
+  public logout(){
+    this.auth.logout();
   }
 
 }

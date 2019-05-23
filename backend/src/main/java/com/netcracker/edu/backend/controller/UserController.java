@@ -51,9 +51,14 @@ public class UserController {
     @RequestMapping(value = "", params = {"size", "page", "role"}, method = RequestMethod.GET)
     public Iterable<UserEntity> getPageWithoutUsersWithRole(@RequestParam(value = "page") int page,
                                                             @RequestParam(value = "size") int size,
-                                                            @RequestParam(value = "role") String role){
+                                                            @RequestParam(value = "role") String role,
+                                                            @RequestParam(value = "filter", required = false) String filter){
         Pageable pageable = PageRequest.of(page, size);
-        return userService.findAllWithout(role, pageable);
+        if(filter == null){
+            return this.userService.findAllWithout(role, pageable);
+        } else {
+            return this.userService.findAllByFilter(role, filter, pageable);
+        }
     }
 
     @RequestMapping(value = "", params = {"role"}, method = RequestMethod.GET)

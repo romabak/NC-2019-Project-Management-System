@@ -11,4 +11,5 @@ public interface UserService extends IDefaultOperationService<UserEntity> {
     Optional<UserEntity> findByEmail(String email);
     Page<UserEntity> findAllWithout(String role, Pageable page);
     List<UserEntity> findAllByRole(String role);
+    Page<UserEntity> findAllByFilter(String role, String filter, Pageable page);
 }

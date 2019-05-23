@@ -9,38 +9,36 @@
   <div class="modal-body" [formGroup]="formControl">
     <div>
       <label for = "code">Project code</label>
-      <select id = "code" class="form-control" formControlName="projectCode" [(ngModel)]="newTask.project">
-        <option disabled="disabled">Выберите проект</option>
-        <option [value]="project.code" *ngFor="let project of allProjects">{{project.code}}</option>
-      </select>
+      <input id = "code" list = "projects" class="form-control" formControlName="project">
+      <datalist id = "projects">
+        <option *ngFor="let project of allProjects" value="{{project.code}}">       
+      </datalist>
     </div>
     <div>
       <label for = "name">Name</label>
-      <input id = "name" class="form-control" formControlName="name" [(ngModel)]="newTask.name" required/>
-    </div>
-    <div>
-      <label for = "description">Description</label>
-      <input id = "description" class="form-control" formControlName="description" [(ngModel)]="newTask.description" required />
+      <input id = "name" class="form-control" formControlName="name"  required/>
     </div>
     <div>
       <label for = "priority">Priority</label>
-      <select id = "priority" class="form-control" formControlName="priority" [(ngModel)]="newTask.priority">
-        <option [value] = "priority.priority" *ngFor="let priority of allPriority">{{priority.priority}}</option>
+      <select id = "priority" class="form-control" formControlName="priority">
+        <option *ngFor="let priority of allPriority">{{priority.priority}}</option>
       </select>
     </div>
     <div>
       <label for = "data">Due Data</label>
-      <input id = "data" class="form-control" type="date" min = "2019-01-01" formControlName="dueDate" [(ngModel)]="newTask.dueDate" required />
+      <input id = "data" class="form-control" type="date" min = "2019-01-01" formControlName="dueDate" required />
     </div>
     <div>
       <label for = "estimation">Estimation</label>
-      <input id = "estimation" class="form-control" formControlName="estimation" [(ngModel)]="newTask.estimation" required />
+      <input id = "estimation" class="form-control" formControlName="estimation" required />
     </div>
     <div>
       <label for = "assignee">Assignee</label>
-      <select id = "assignee" class="form-control" formControlName="assignee" [(ngModel)] = "newTask.assignee">
-        <option [ngValue] = "user" *ngFor = "let user of allUsers">{{user.firstName + " "+ user.secondName}}</option>
-      </select>
+      <ngx-select-dropdown formControlName="assignee" [multiple]="false" [config]="config" [options]="allUsers"></ngx-select-dropdown>
+      <!-- <input id = "assignee" list="developers" class="form-control" >
+      <datalist id="developers" [(ngModel)] = "assigneeUser" [ngModelOptions]="{standalone: true}" >  
+        <option *ngFor = "let user of allUsers" (change) = "addNewTask()" name="assigneeUser" [ngValue] = "user" value = "{{user.firstName +' '+ user.secondName}}">
+      </datalist> -->
     </div>
   </div>
   <div class="modal-footer">

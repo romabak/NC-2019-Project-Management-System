@@ -23,4 +23,10 @@ public interface UserRepository extends PagingAndSortingRepository<UserEntity, I
     @Query(value = "select * from user where not user.role_id = (select id from role where role.role = :role)",
     nativeQuery = true)
     Page<UserEntity> findAllWithout(@Param("role") String role, Pageable page);
+
+    @Query(value = "select * from user where not user.role_id = (select id from role where role.role = :role) " +
+            "and" +
+            ":str in (first_name, second_name, email) " +
+            "or role_id = (select id from role where role = :str)", nativeQuery = true)
+    Page<UserEntity> findAllByFilter(@Param("role") String role, @Param("str") String str, Pageable page);
 }

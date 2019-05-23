@@ -10,6 +10,8 @@ public class TaskDTOModel {
     private Date dueDate;
     private Date createdDate;
     private Date updateDate;
+    private Date resolvedDate;
+    private Date closedDate;
     private String project;
     private int estimation;
     private String status;
@@ -18,7 +20,7 @@ public class TaskDTOModel {
     private String description;
     private String name;
     private String ticketCode;
-    private String reporter;
+    private UserDTOModel reporter;
 
     public TaskDTOModel(){
     }
@@ -29,6 +31,8 @@ public class TaskDTOModel {
                 task.getDueDate(),
                 task.getCreatedDate(),
                 task.getUpdateDate(),
+                task.getResolvedDate(),
+                task.getClosedDate(),
                 task.getProject().getCode(),
                 task.getEstimation(),
                 task.getStatus().getStatus(),
@@ -37,15 +41,31 @@ public class TaskDTOModel {
                 task.getDescription(),
                 task.getName(),
                 task.getTicketCode(),
-                task.getReporter().getFirstName() + task.getReporter().getSecondName()
+                new UserDTOModel(task.getReporter())
         );
     }
 
-    public TaskDTOModel(int id, Date dueDate, Date createdDate, Date updateDate, String project, int estimation, String status, UserDTOModel assignee, String priority, String description, String name, String ticketCode, String reporter) {
+    public TaskDTOModel(int id, 
+        Date dueDate, 
+        Date createdDate, 
+        Date updateDate,
+        Date resolvedDate,
+        Date closedDate, 
+        String project, 
+        int estimation, 
+        String status, 
+        UserDTOModel assignee, 
+        String priority, 
+        String description, 
+        String name, 
+        String ticketCode, 
+        UserDTOModel reporter) {
         this.id = id;
         this.dueDate = dueDate;
         this.createdDate = createdDate;
         this.updateDate = updateDate;
+        this.resolvedDate = resolvedDate;
+        this.closedDate = closedDate;
         this.project = project;
         this.estimation = estimation;
         this.status = status;
@@ -87,6 +107,22 @@ public class TaskDTOModel {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public Date getResolvedDate() {
+        return resolvedDate;
+    }
+
+    public void setResolvedDate(Date updateDate) {
+        this.resolvedDate = resolvedDate;
+    }
+
+    public Date getClosedDate() {
+        return closedDate;
+    }
+
+    public void setClosedDate(Date closedDate) {
+        this.closedDate = closedDate;
     }
 
     public String getProject() {
@@ -153,11 +189,11 @@ public class TaskDTOModel {
         this.ticketCode = ticketCode;
     }
 
-    public String getReporter() {
+    public UserDTOModel getReporter() {
         return reporter;
     }
 
-    public void setReporter(String reporter) {
+    public void setReporter(UserDTOModel reporter) {
         this.reporter = reporter;
     }
 

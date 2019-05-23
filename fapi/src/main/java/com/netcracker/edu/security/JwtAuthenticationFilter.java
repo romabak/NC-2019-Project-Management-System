@@ -33,12 +33,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
         String header = httpServletRequest.getHeader(SecurityJwtConstants.HEADER_STRING);
-        // Cookie[] cookie = httpServletRequest.getCookies();
-        // String[] name = cookie.stream().map(Cookie::getName).collect(Collectors.toList());
-        // for(int i=0;i<cookie.length;i++){  
-             // System.out.println(cookie[i].getName()+" "+cookie[i].getValue());//printing name and value of cookie  
-        // }  
-        System.out.println("JwtFilter:header = " + header);
         String userName = null;
         String authToken = null;
         if (header != null && header.startsWith(SecurityJwtConstants.TOKEN_PREFIX)) {

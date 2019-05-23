@@ -9,8 +9,8 @@ import java.util.Optional;
 
 public interface TaskService extends IDefaultOperationService<TaskEntity> {
     Optional<TaskEntity> findByName(String name);
-    Page<TaskEntity> findAll(Pageable pageable);
-    Page<TaskEntity> findAllByName(String name, Pageable pageable);
-    TaskEntity update(TaskEntity task);
-    Page<TaskEntity> findAllByFilter(String str, Pageable pageable);
+    Page<TaskEntity> findAll(String email, Pageable pageable);
+    Page<TaskEntity> findAllByFilter(String email, String filter, Pageable pageable);
+    Page<TaskEntity> findAllByStatus(String status, Pageable page);
+    Page<TaskEntity> findAllByStatusAndFilter(String status, String filter, Pageable page);
 }

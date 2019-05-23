@@ -52,6 +52,10 @@ public class UserServiceImpl implements UserService {
     public Page<UserEntity> findAllWithout(String role, Pageable page) {
         return this.repository.findAllWithout(role, page);
     }
+    @Override
+    public Page<UserEntity> findAllByFilter(String role,String filter, Pageable page) {
+        return this.repository.findAllByFilter(role, filter, page);
+    }
 
     @Override
     public List<UserEntity> findAllByRole(String role) {

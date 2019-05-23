@@ -35,8 +35,8 @@ export class NewProjectComponent implements OnInit {
     });
   }
 
-
   private saveNewProject() {
+    this.newProject = new Project(this.formControl.value);
     this.subscriptions.push(this.projectService.saveNewProject(this.newProject).subscribe(() => {
       this.newProject = new Project();
       this.activeModal.close();

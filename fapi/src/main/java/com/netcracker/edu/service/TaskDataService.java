@@ -7,8 +7,7 @@ import java.util.List;
 
 public interface TaskDataService {
     List<TaskDBModel> getAll();
-    PageTaskDBModel getPage(int page, int size);
+    PageTaskDBModel getPage(String email, String role, String filter, int page, int size);
     TaskDBModel saveNewTask(TaskDBModel task);
     TaskDBModel getById(int id);
-    TaskDBModel updateTask(TaskDBModel task);
 }

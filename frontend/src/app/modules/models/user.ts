@@ -6,4 +6,8 @@ export class User {
   secondName: string;
   email: string;
   role: UserRole;
+
+  public setEmail(email: string){
+  	this.email = email;
+  }
 }

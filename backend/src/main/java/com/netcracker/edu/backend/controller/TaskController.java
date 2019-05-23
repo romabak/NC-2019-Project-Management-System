@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/task")
@@ -35,27 +36,33 @@ public class TaskController{
         return this.taskService.save(task);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id:[\\d]+}", method = RequestMethod.GET)
     public ResponseEntity<TaskEntity> getTaskByName(@PathVariable(name = "id") int id){
         Optional<TaskEntity> task = taskService.findById(id);
         return ResponseEntity.ok(task.get());
     }
 
-    @RequestMapping(value = "", params = {"size", "page"}, method = RequestMethod.GET)
-    public Iterable<TaskEntity> getPage(@RequestParam(value = "page") int page,
-                                        @RequestParam(value = "size", defaultValue = "5") int size){
+    @RequestMapping(value = "/{email}", params = {"size", "page"}, method = RequestMethod.GET)
+    public Iterable<TaskEntity> getPage(@PathVariable(value = "email") String email,
+                                        @RequestParam(value = "filter", required = false) String filter,
+                                        @RequestParam(value = "page") int page,
+                                        @RequestParam(value = "size") int size,
+                                        @RequestParam(value = "role", required = false) String role){
+        String status = "ready for test";
         Pageable pageable = PageRequest.of(page, size);
-        Page<TaskEntity> result = taskService.findAll(pageable);
-        return result;
-    }
-
-    @RequestMapping(value = "/filter", params = {"filter", "size", "page"}, method = RequestMethod.GET)
-    public Iterable<TaskEntity> getByFilter(@RequestParam(value = "filter") String filter,
-                                            @RequestParam(value = "page") int page,
-                                            @RequestParam(value = "size") int size){
-        Pageable pageable = PageRequest.of(page, size);
-        Page<TaskEntity> result = this.taskService.findAllByFilter(filter, pageable);
-        return result;
+        if(Objects.equals(role, "tester")){
+            if(filter == null){
+                return this.taskService.findAllByStatus(status, pageable );
+            } else {
+                return this.taskService.findAllByStatusAndFilter(status, filter, pageable);
+            }
+        } else {
+            if(filter == null){
+                return this.taskService.findAll(email, pageable);
+            } else {
+                return this.taskService.findAllByFilter(email, filter, pageable);
+            }
+        }
     }
 
 }

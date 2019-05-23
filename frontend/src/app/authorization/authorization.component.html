@@ -1,20 +1,25 @@
 <div class="m-3 p-3">
-  <form [formGroup] = "loginForm">
+  <form [formGroup] = "loginForm" (ngSubmit)="onSubmit()">
     <div class="form-row">
       <div class="col-sm-3">
         <label>Email</label>
-        <input type="email" class="form-control" id="email" required="required" formControlName = "email">
+        <input type="email" class="form-control" id="email" formControlName = "email"
+               [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <div *ngIf="f.email.errors.required">Email is required</div>
+          <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+        </div>
       </div>
     </div>
     <div class="form-row">
       <div class="col-sm-3">
         <label for="Password">Password</label>
-        <input type="password" class="form-control" id="Password" formControlName = "password">
+        <input type="password" class="form-control" id="Password" formControlName = "password"[ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+        </div>
       </div>
     </div>
-    <div class="checkbox">
-      <label><input type="checkbox" [(ngModel)]="rememberMe" (change)="rememberMe= !rememberMe"> Remember me</label>
-    </div>
-    <button  class="btn btn-success" (click) = "login()">LogIn</button>
+    <button id="login" class="btn btn-success" (click) = "login()">LogIn</button>
   </form>
 </div>

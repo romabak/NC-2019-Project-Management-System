@@ -8,11 +8,11 @@
   </div>
   <div class="modal-body" [formGroup]="formControl">
       <label for = "code">Code</label>
-      <input id = "code" type="text" class="form-control" formControlName="code" [(ngModel)]="newProject.code" pattern="[0-9]{4}" required="required"z />
+      <input id = "code" type="text" class="form-control" formControlName="code" pattern="[0-9]{4}" />
       <label for = "name">Name</label>
-      <input id = "name" type="text" class="form-control" formControlName="name" [(ngModel)]="newProject.name" required />
+      <input id = "name" type="text" class="form-control" formControlName="name"/>
       <label for = "summary">Summary</label>
-      <input id = "summary" type="text" class="form-control" formControlName="summary" [(ngModel)]="newProject.summary" required />
+      <input id = "summary" type="text" class="form-control" formControlName="summary" />
   </div>
   <div class="modal-footer">
     <button [disabled]="!formControl.valid" (click)="saveNewProject()" type="button" class="btn btn-default" data-dismiss="modal">Create</button>

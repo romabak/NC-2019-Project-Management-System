@@ -48,7 +48,7 @@ import javax.annotation.Resource;
 //            .antMatchers(HttpMethod.POST, "/api/task").hasRole("PROJECT MANAGER")
 //            .antMatchers(HttpMethod.POST, "/api/project").hasRole("PROJECT MANAGER")
 //            .antMatchers("/api/token/generate-token").permitAll()
-                 .antMatchers("/**").permitAll()
+                 .antMatchers("/api/token").permitAll()
                  .and()
                  .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
                  .and()

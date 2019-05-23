@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class TaskDataServiceImpl implements TaskDataService {
@@ -25,9 +26,21 @@ public class TaskDataServiceImpl implements TaskDataService {
     }
 
     @Override
-    public PageTaskDBModel getPage(int page, int size) {
+    public PageTaskDBModel getPage(String email, String role, String filter, int page, int size) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(backendServerUrl + "/api/task?page=" + page + "&size=" + size, PageTaskDBModel.class);
+        if(Objects.equals(role, "tester")){
+            if(filter == null){
+                return restTemplate.getForObject(backendServerUrl + "/api/task/" + email + "?page=" + page + "&size=" + size + "&role=" + role, PageTaskDBModel.class);
+            } else{
+                return restTemplate.getForObject(backendServerUrl + "/api/task/" + email + "?page=" + page + "&size=" + size + "&filter=" + filter + "&role=" + role, PageTaskDBModel.class);
+            }
+        } else {
+            if(filter == null) {
+                return restTemplate.getForObject(backendServerUrl + "/api/task/" + email + "?page=" + page + "&size=" + size, PageTaskDBModel.class);
+            } else {
+                return restTemplate.getForObject(backendServerUrl + "/api/task/" + email + "?page=" + page + "&size=" + size + "&filter=" + filter, PageTaskDBModel.class);
+            }
+        }
     }
 
     @Override
@@ -41,13 +54,5 @@ public class TaskDataServiceImpl implements TaskDataService {
     public TaskDBModel getById(int id) {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.getForObject(backendServerUrl + "/api/task/" + id, TaskDBModel.class);
-    }
-
-    @Override
-    public TaskDBModel updateTask(TaskDBModel task) {
-        RestTemplate restTemplate = new RestTemplate();
-        TaskDBModel taskById = getById(task.getId());
-        taskById = task;
-        return restTemplate.postForObject(backendServerUrl + "/api/task/", task, TaskDBModel.class);
     }
 }
